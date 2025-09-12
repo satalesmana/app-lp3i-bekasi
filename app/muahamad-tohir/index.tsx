@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 
-export default function muhamad-tohir Index() {
+export default function tohirIndex() {
   return (
     <View>
      <Text> ini halaman tohirun </Text>
