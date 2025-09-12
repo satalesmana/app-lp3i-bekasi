@@ -1,6 +1,6 @@
 import {View, Text} from 'react-native';
 
-export default function fatimahindex(){
+export default function FatimahIndex(){
     return (
     <View>
         <Text>Ini halaman fatimah</Text>
