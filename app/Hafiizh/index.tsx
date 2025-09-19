@@ -2,17 +2,9 @@ import { router } from "expo-router";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Index() {
-  // Kalau masih mau auto-redirect setelah 3 detik, bisa aktifkan ini:
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     router.replace("./home");
-  //   }, 3000);
-  //   return () => clearTimeout(timer);
-  // }, []);
 
   return (
     <View style={styles.container}>
-      {/* Gambar ilustrasi */}
       <Image
         source={require("../../assets/images/logo2.png")}
         style={styles.image}
