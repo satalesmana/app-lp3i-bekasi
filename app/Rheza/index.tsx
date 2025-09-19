@@ -1,4 +1,5 @@
 import { Image, StyleSheet, View, Text, Pressable } from "react-native";
+import { router } from "expo-router";
 
 export default function Index() {
   return (
@@ -18,7 +19,7 @@ export default function Index() {
         <View style={[styles.box, { backgroundColor: "#706CF6" }]} />
         <View style={[styles.box, { backgroundColor: "#706CF6", marginRight: 0 }]} />
 
-        <Pressable style={styles.nextBtn} onPress={() => console.log("Next pressed")}>
+        <Pressable style={styles.nextBtn} onPress={()=>{router.push('/Rheza/login')}}>
           <Image
             source={require("../../assets/images/Next Button.png")}
             style={styles.nextImg}
