@@ -11,6 +11,12 @@ export default function homeScreen() {
           title="Learn More"
           color="#841584"
         />
+        
+        <Button
+          onPress={()=> router.push("/salsabila-nurul")}
+          title="Halaman Salsabila"
+          color="#841584"
+        />
     </View>
   );
 }
