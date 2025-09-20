@@ -13,6 +13,12 @@ export default function homeScreen() {
         />
         
         <Button
+          onPress={()=> router.push("/salsabila-nurul")}
+          title="Halaman Salsabila"
+          color="#841584"
+          />
+        
+        <Button
           onPress={()=> router.push("/zakky-mufra")}
           title="Learn More"
           />
