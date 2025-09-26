@@ -29,18 +29,18 @@ export default function FatimahIndex() {
           <Text style={styles.nextButtonText}>Next</Text>
         </TouchableOpacity>
 
-        {/* Divider */}
-        <View style={styles.dividerContainer}>
-          <View style={styles.divider} /> 
-          <Text style={styles.dividerText}>Or With</Text>
-          <View style={styles.divider} />
+        {/* line */}
+       <View style={styles.orContainer}>
+               <View style={styles.line} />
+               <Text style={styles.orText}>Or With</Text>
+               <View style={styles.line} />
         </View>
 
         {/* Tombol login sosial */}
         <View style={styles.socialContainer}>
           <TouchableOpacity style={styles.socialButton}>
             <Image
-              source={{ uri: "https://cdn-icons-png.flaticon.com/512/25/25231.png" }}
+              source={require("../../assets/images/fatimah/github.png")}
               style={styles.socialIcon}
             />
             <Text style={styles.socialText}>GitHub</Text>
@@ -48,7 +48,7 @@ export default function FatimahIndex() {
 
           <TouchableOpacity style={styles.socialButton}>
             <Image
-              source={{ uri: "https://cdn-icons-png.flaticon.com/512/5968/5968853.png" }}
+              source={require("../../assets/images/fatimah/gitlab.png")}
               style={styles.socialIcon}
             />
             <Text style={styles.socialText}>GitLab</Text>
@@ -57,70 +57,71 @@ export default function FatimahIndex() {
       </View>
 
       {/* Footer teks Sign Up (selalu di bawah) */}
-      <Text style={styles.footerText}>
-        Don’t have an account? <Text style={styles.signUp}>Sign Up</Text>
-      </Text>
-    </View>
+         <View style={styles.footer}>
+              <Text style={styles.footerText}>Don’t have an account ? </Text>
+              <TouchableOpacity>
+                <Text style={styles.signUp}>Sign Up</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 24,
     backgroundColor: "#fff",
-    justifyContent: "space-between", // pisahkan atas & bawah
+    paddingTop: 40,
   },
   image: {
-    width: "100%",
-    height: 300,
-    marginBottom: 20,
-    marginTop: 30,
+    width: 352,
+    height: 330,
+    marginBottom: 50,
+    marginTop: 20,
     alignSelf: "center",
   },
   title: {
-    fontSize: 22,
+    fontSize: 25,
     fontWeight: "bold",
     color: "#000",
+    marginLeft: 10,
     marginBottom: 5,
-    marginLeft: 40,
     alignSelf: "flex-start",
   },
   subtitle: {
     fontSize: 14,
-    color: "#666",
+    color: "#999EA1",
     marginBottom: 25,
-    marginLeft: 40,
+    marginLeft: 10,
     alignSelf: "flex-start",
   },
   nextButton: {
-  backgroundColor: "#6C2DC7",
-  paddingVertical: 12,
-  paddingHorizontal: 20,
-  borderRadius: 5,
-  marginBottom: 20,
-  width: 340,   
-  alignItems: "center",
-  alignSelf: "center",
+    backgroundColor: "#4E0189",
+    padding: 15,
+    borderRadius: 10,
+    alignItems: "center",
+    marginBottom: 20,
 },
   nextButtonText: {
     color: "#fff",
     fontSize: 16,
     fontWeight: "600",
   },
-  dividerContainer: {
+    orContainer: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 20,
-    width: "100%",
   },
-  divider: {
+  line: {
     flex: 1,
     height: 1,
-    backgroundColor: "#ddd",
+    backgroundColor: "#000000",
   },
-  dividerText: {
-    marginHorizontal: 10,
-    color: "#666",
+  orText: {
+    marginHorizontal: 8,
+    fontSize: 14,
+    color: "#999EA1",
   },
   socialContainer: {
     flexDirection: "row",
@@ -140,6 +141,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 5,
     backgroundColor: "#fff",
+    justifyContent: "center",
   },
   socialIcon: {
     width: 20,
@@ -151,14 +153,18 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: "#000",
   },
+   footer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: "auto",
+  },
   footerText: {
+    color: "#999EA1",
     fontSize: 14,
-    color: "#666",
-    textAlign: "center",
-    marginBottom: 20,
   },
   signUp: {
-    color: "#6C2DC7",
+    color: "#4E0189",
+    fontSize: 14,
     fontWeight: "600",
   },
 });
