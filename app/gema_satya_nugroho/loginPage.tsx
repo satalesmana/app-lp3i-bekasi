@@ -6,12 +6,14 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
 
-export default function LoginScreen() {
+export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const onSubmitLogin = () => {
     Alert.alert("Info", "Login Gagal", [
@@ -20,104 +22,148 @@ export default function LoginScreen() {
   };
 
   return (
-    <View style={{ paddingTop: 40 }}>
-      <View style={[style.container, style.containerHeroText]}>
-        <Text style={style.welcomeText}>LOGIN</Text>
-      </View>
+    <View style={styles.container}>
+      {/* Title */}
+      <Text style={styles.title}>LOGIN</Text>
 
-      <View style={style.container}>
-        <TextInput
-          style={style.input}
-          onChangeText={setEmail}
-          value={email}
-          placeholder="Email"
-        />
+      {/* Email */}
+      <Text style={styles.label}>E-MAIL</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={setEmail}
+        value={email}
+        placeholder="Enter your email"
+        keyboardType="email-address"
+      />
 
+      {/* Password */}
+      <Text style={styles.label}>PASSWORD</Text>
+      <View style={styles.passwordContainer}>
         <TextInput
-          style={style.input}
+          style={styles.passwordInput}
           value={password}
           onChangeText={setPassword}
-          placeholder="Password"
+          placeholder="Enter your password"
+          secureTextEntry={!showPassword}
         />
-
-        <Pressable
-          onPress={onSubmitLogin}
-          style={[style.btnLogin, { marginTop: 20 }]}
+        <TouchableOpacity
+          onPress={() => setShowPassword(!showPassword)}
+          style={styles.showBtn}
         >
-          <Text style={{ color: "white" }}>Login</Text>
-        </Pressable>
+          <Text>{showPassword ? "🙈" : "👁️"}</Text>
+        </TouchableOpacity>
       </View>
 
-      <Text style={style.forgotPassword}>Forgot Password ?</Text>
+      {/* Forgot Password */}
+      <TouchableOpacity>
+        <Text style={styles.forgotPassword}>FORGOT PASSWORD?</Text>
+      </TouchableOpacity>
 
-      <View style={style.imageLoginContainer}>
-        <Image
-          style={style.imageLoagin}
-          source={require("@/assets/images/logo-app.png")}
-        />
-        <Image
-          style={style.imageLoagin}
-          source={require("@/assets/images/logo-app.png")}
-        />
-        <Image
-          style={style.imageLoagin}
-          source={require("@/assets/images/logo-app.png")}
-        />
-      </View>
+      {/* Login Button */}
+      <Pressable onPress={onSubmitLogin} style={styles.btnLogin}>
+        <Text style={styles.btnLoginText}>LOGIN</Text>
+      </Pressable>
 
-      <Text style={{ marginTop: 20, textAlign: "center" }}>
-        Don’t have an account ? Sign Up
-      </Text>
+      {/* Or Login With */}
+      <Text style={styles.orText}>OR LOGIN WITH</Text>
+
+      {/* Google Login */}
+      <TouchableOpacity style={styles.googleBtn}>
+        <Image
+          source={require("@/assets/images/google_logo.png")}
+          style={styles.googleIcon}
+        />
+        <Text style={styles.googleText}>LOGIN WITH GOOGLE</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
-    marginLeft: 20,
-    marginRight: 20
+    flex: 1,
+    padding: 25,
+    backgroundColor: "#fff",
   },
-  containerHeroText: {
-    marginTop: 40,
-    display: "flex",
-    justifyContent: "center",
-    alignContent: "center"
+  title: {
+    fontSize: 20,
+    fontWeight: "700",
+    textAlign: "center",
+    marginBottom: 40,
+    marginTop: 100,
   },
-  welcomeText: {
-    fontSize: 24,
-    fontWeight: "800",
-  },
-  subText: {
-    fontSize: 13,
+  label: {
+    fontSize: 12,
+    fontWeight: "600",
+    marginBottom: 5,
   },
   input: {
-    height: 57,
-    paddingLeft: 12,
     borderWidth: 1,
-    marginTop: 12,
-    borderRadius: 10,
-  },
-  btnLogin: {
-    backgroundColor: "#0D2063",
+    borderColor: "#ddd",
     borderRadius: 8,
-    height: 37,
-    display: "flex",
+    paddingHorizontal: 12,
+    height: 45,
+    marginBottom: 15,
+  },
+  passwordContainer: {
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 8,
+    height: 45,
+    marginBottom: 8,
+    paddingRight: 10,
+  },
+  passwordInput: {
+    flex: 1,
+    paddingHorizontal: 12,
+  },
+  showBtn: {
+    paddingHorizontal: 5,
   },
   forgotPassword: {
-    textAlign: "center",
-    marginTop: 40,
+    color: "#2F80ED",
+    fontSize: 12,
+    alignSelf: "flex-end",
     marginBottom: 20,
   },
-  imageLoginContainer: {
-    display: "flex",
+  btnLogin: {
+    backgroundColor: "#27AE60",
+    borderRadius: 25,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 25,
+  },
+  btnLoginText: {
+    color: "#fff",
+    fontWeight: "700",
+    fontSize: 16,
+  },
+  orText: {
+    textAlign: "center",
+    color: "#888",
+    marginBottom: 20,
+    fontSize: 12,
+    fontWeight: "500",
+  },
+  googleBtn: {
     flexDirection: "row",
-    gap: 10,
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 25,
+    height: 50,
     justifyContent: "center",
   },
-  imageLoagin: {
-    width: 35,
-    height: 35,
+  googleIcon: {
+    width: 20,
+    height: 20,
+    marginRight: 10,
+    resizeMode: "contain",
+  },
+  googleText: {
+    fontWeight: "600",
   },
 });
