@@ -49,6 +49,11 @@ export default function homeScreen() {
         />
         
 
+        <Button
+          onPress={()=> router.push("/ade")}
+          title="ade"
+          color="#841584"
+        />
     </View>
   );
 }
