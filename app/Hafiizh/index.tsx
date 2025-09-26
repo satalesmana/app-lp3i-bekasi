@@ -20,7 +20,7 @@ export default function Index() {
       {/* Tombol */}
       <TouchableOpacity
         style={styles.button}
-        onPress={() => router.replace("./home")}
+        onPress={() => router.replace("/Hafiizh/login")}
       >
         <Text style={styles.buttonText}>Start our journey</Text>
       </TouchableOpacity>
