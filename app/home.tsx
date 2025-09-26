@@ -43,6 +43,13 @@ export default function homeScreen() {
           title="Halaman Gema"
           color="#841584"
         />
+        <Button
+          onPress={()=> router.push("/fatimah-azzahra")}
+          title="Fatimah"
+          color="#841584"
+        />
+        
+
     </View>
   );
 }
