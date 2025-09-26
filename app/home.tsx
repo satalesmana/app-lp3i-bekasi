@@ -11,6 +11,11 @@ export default function homeScreen() {
           title="Learn More"
           color="#841584"
         />
+        <Button
+          onPress={()=> router.push("/ade")}
+          title="ade"
+          color="#841584"
+        />
     </View>
   );
 }
