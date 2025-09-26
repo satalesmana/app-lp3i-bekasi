@@ -8,6 +8,7 @@ export default function RootLayout() {
       <Stack.Screen name="sata-lesmana" options={{headerShown: false}} />
       <Stack.Screen name="Hafiizh" options={{headerShown: false}} />
       <Stack.Screen name="Rheza" options={{headerShown: false}} />
+      <Stack.Screen name="gema_satya_nugroho" options={{headerShown: false}} />
     </Stack>
   );
 }
