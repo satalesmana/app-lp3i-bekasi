@@ -4,7 +4,6 @@ import { router } from "expo-router";
 
 const { width, height } = Dimensions.get("window");
 
-/* === Tweakable constants biar persis seperti gambar === */
 const LOGO_SIZE = Math.round(width * 0.34);
 const LOGO_TOP = Math.round(height * 0.20);
 
@@ -26,14 +25,12 @@ export default function Index() {
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
 
-      {/* LOGO */}
       <Image
         source={require("../../assets/images/pizza.png")}
         style={styles.logo}
         resizeMode="contain"
       />
 
-      {/* Piring bawah */}
       <View style={styles.plateMask}>
         <Image
           source={require("../../assets/images/pizza1.png")}
