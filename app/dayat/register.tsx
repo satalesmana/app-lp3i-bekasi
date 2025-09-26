@@ -13,11 +13,11 @@ import {
 export default function RegisterScreen() {
   const router = useRouter();
 
-  const [firstName, setFirstName] = useState("Jhon");
-  const [lastName, setLastName] = useState("Doe");
-  const [email, setEmail] = useState("jhondoe@gmail.com");
-  const [countryCode, setCountryCode] = useState("+33");
-  const [phone, setPhone] = useState("3334586492");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [countryCode, setCountryCode] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [agree, setAgree] = useState(false);
 
