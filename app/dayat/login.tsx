@@ -61,12 +61,12 @@ export default function LoginScreen({ navigation }: any) {
         </Pressable>
       </View>
 
-      {/* Tombol Login */}
+      {}
       <Pressable style={style.btnLogin} onPress={onSubmitLogin}>
         <Text style={style.btnLoginText}>Login</Text>
       </Pressable>
 
-      {/* Tombol Connect Wallet */}
+      {}
       <Pressable style={style.btnWallet}>
         <Text style={style.btnWalletText}>Connect to a wallet</Text>
       </Pressable>
