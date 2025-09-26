@@ -1,10 +1,9 @@
 import { router } from "expo-router";
 import { Button, Text, View } from "react-native";
 
-
 export default function homeScreen() {
   return (
-    <View>
+    <View style={{padding: 15}}>
         <Text>ini halaman home</Text>
         <Button
           onPress={()=> router.push("/sata-lesmana")}
