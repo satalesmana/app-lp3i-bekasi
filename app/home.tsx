@@ -26,6 +26,11 @@ export default function homeScreen() {
         <Button
           onPress={()=> router.push("/dayat")}
           title="halaman dayat"
+        />
+        
+        <Button
+          onPress={()=> router.push("/Hafiizh")}
+          title="Hafiizh"
           color="#841584"
         />
     </View>
