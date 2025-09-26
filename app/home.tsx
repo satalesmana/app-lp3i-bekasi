@@ -9,8 +9,15 @@ export default function homeScreen() {
         <Button
           onPress={()=> router.push("/sata-lesmana")}
           title="Learn More"
+          color="#841584"/>
+
+        <Text>ini halaman home</Text>
+        <Button
+          onPress={()=> router.push("/muhamad-tohir")}
+          title="halaman tohir"
           color="#841584"
         />
     </View>
+    
   );
 }

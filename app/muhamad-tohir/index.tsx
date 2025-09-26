@@ -5,9 +5,10 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
+  Pressable,
   View,
 } from "react-native";
+import { router } from "expo-router";
 
 export default function LoginScreen() {
   const [number, setNumber] = useState("");
@@ -17,9 +18,10 @@ export default function LoginScreen() {
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.headerRow}>
-          <Text style={styles.title}>Login 👤</Text>
+          {/* Teks dulu, logo di kanan */}
+          <Text style={styles.title}>Login</Text>
           <Image
-            source={require("../../assets/images/logo.png")}
+            source={require("../../assets/images/login.png")}
             style={styles.headerImage}
             resizeMode="contain"
           />
@@ -45,33 +47,54 @@ export default function LoginScreen() {
         onChangeText={setNumber}
       />
 
-      <TouchableOpacity>
+      <Pressable>
         <Text style={styles.changeText}>Change Number ?</Text>
-      </TouchableOpacity>
+      </Pressable>
 
-      <TouchableOpacity style={styles.loginButton}>
+      {/* Tombol Login */}
+      <Pressable
+        style={({ pressed }) => [
+          styles.loginButton,
+          { opacity: pressed ? 0.7 : 1 },
+        ]}
+        onPress={() => {
+          router.push("/muhamad-tohir/login");
+        }}
+      >
         <Text style={styles.loginText}>Login</Text>
-      </TouchableOpacity>
+      </Pressable>
 
       <Text style={styles.orText}>Or Login with</Text>
 
       {/* Tombol Google */}
-      <TouchableOpacity style={styles.googleButton}>
+      <Pressable
+        style={({ pressed }) => [
+          styles.googleButton,
+          { opacity: pressed ? 0.7 : 1 },
+        ]}
+        onPress={() => {
+          console.log("Login with Google");
+        }}
+      >
         <Image
           source={{
-            uri: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png",
+            uri: "https://upload.wikimedia.org/wikipedia/commons/44a/Logo_2013_Google.png",
           }}
           style={styles.googleIcon}
         />
         <Text style={styles.googleText}>Google</Text>
-      </TouchableOpacity>
+      </Pressable>
 
       {/* Sign Up */}
       <View style={styles.signupContainer}>
         <Text style={styles.signupText}>You Don’t have an account ?</Text>
-        <TouchableOpacity>
+        <Pressable
+          onPress={() => {
+            router.push("/");
+          }}
+        >
           <Text style={styles.signupLink}> Sign up</Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
     </SafeAreaView>
   );
@@ -85,12 +108,12 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   header: {
-    marginBottom: 20,
+    marginBottom: 30, // jarak lebih gede biar logo & form turun
   },
   headerRow: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between", // teks kiri, gambar kanan
+    gap: 8,
   },
   title: {
     fontSize: 22,
@@ -103,13 +126,14 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 14,
     color: "#555",
-    marginTop: 5,
+    marginTop: 10, // jarak lebih lega antara "Welcome back" & logo login
   },
   image: {
     width: "100%",
     height: 200,
     alignSelf: "center",
-    marginBottom: 20,
+    marginBottom: 30, // turun lebih jauh sebelum masuk ke form
+    marginTop: 100,    // jarak tambahan dari header ke logo besar
   },
   label: {
     fontSize: 16,
