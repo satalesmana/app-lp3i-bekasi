@@ -13,7 +13,7 @@ export default function homeScreen() {
         />
         <Button
           onPress={()=> router.push("/Hndrawanjyd")}
-          title="Learn More"
+          title="Login Hendrawan"
           color="#841584"
         />
     </View>
