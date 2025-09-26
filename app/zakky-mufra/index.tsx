@@ -1,23 +1,23 @@
+import { useRouter } from "expo-router";
 import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function ZakkyMufraIndex() {
+export default function OnboardingScreen() {
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
-      {/* Gambar ilustrasi */}
       <Image
-        source={require("../../assets/images/travel.png")} // ganti dengan ilustrasi kamu
+        source={require("@/assets/images/travel.png")}
         style={styles.image}
         resizeMode="contain"
       />
 
-      {/* Teks */}
       <View style={styles.textContainer}>
         <Text style={styles.title}>Explore the world easily</Text>
         <Text style={styles.subtitle}>To your desire</Text>
       </View>
 
-      {/* Indikator + tombol next */}
       <View style={styles.footer}>
         <View style={styles.indicatorWrapper}>
           <View style={[styles.indicator, styles.active]} />
@@ -25,7 +25,10 @@ export default function ZakkyMufraIndex() {
           <View style={styles.indicator} />
         </View>
 
-        <TouchableOpacity style={styles.nextButton}>
+        <TouchableOpacity
+          style={styles.nextButton}
+          onPress={() => router.replace("/zakky-mufra/login")} // pindah ke login.tsx
+        >
           <Text style={styles.nextArrow}>{">"}</Text>
         </TouchableOpacity>
       </View>
