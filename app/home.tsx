@@ -57,8 +57,8 @@ export default function homeScreen() {
 
         <Button
           onPress={()=> router.push("/ade")}
-          title="ade"
-          color="#841584"
+          label="Halaman Ade"
+          color="#841584F"
         />
         <Button
           onPress={()=> router.push("/Hndrawanjyd")}
