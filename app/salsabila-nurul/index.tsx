@@ -1,5 +1,5 @@
-import { Image, StyleSheet, Text, View, TouchableOpacity} from "react-native";
 import { router } from "expo-router";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Index() {
   return (
@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   image: {
-    width: 250,
-    height: 250,
+    width: 310,
+    height: 187,
     marginBottom: 30,
   },
   title: {
