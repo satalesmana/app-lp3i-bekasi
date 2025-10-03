@@ -7,6 +7,7 @@ import {
   View, 
   TouchableOpacity 
 } from "react-native";
+import ButtonPurple from "./components/Mybutton";
 
 export default function FatimahIndex() {
   return (
@@ -25,10 +26,10 @@ export default function FatimahIndex() {
         <Text style={styles.subtitle}>Hello again, you’ve been missed!</Text>
 
         {/* Tombol Next */}
-        <TouchableOpacity style={styles.nextButton} onPress={()=>{router.push('/fatimah-azzahra/login')}}>
-          <Text style={styles.nextButtonText}>Next</Text>
-        </TouchableOpacity>
-
+        <ButtonPurple
+                 label="Next"
+                 onPress={()=> router.push("/fatimah-azzahra/login")}
+                 />
         {/* line */}
        <View style={styles.orContainer}>
                <View style={styles.line} />
@@ -95,18 +96,6 @@ const styles = StyleSheet.create({
     marginBottom: 25,
     marginLeft: 10,
     alignSelf: "flex-start",
-  },
-  nextButton: {
-    backgroundColor: "#4E0189",
-    padding: 15,
-    borderRadius: 10,
-    alignItems: "center",
-    marginBottom: 20,
-},
-  nextButtonText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "600",
   },
     orContainer: {
     flexDirection: "row",

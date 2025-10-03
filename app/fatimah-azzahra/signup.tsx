@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { router } from "expo-router";
-import ButtonPurple from "./components/Mybutton";
 import {
   View,
   Text,
@@ -10,10 +9,11 @@ import {
   Image,
 } from "react-native";
 import Checkbox from "expo-checkbox"; 
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons"; 
 
-export default function LoginScreen() {
+export default function SignUpScreen() {
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
   const [secure, setSecure] = useState(true);
@@ -21,46 +21,60 @@ export default function LoginScreen() {
   return (
     <View style={styles.container}>
       {/* Title */}
-      <Text style={styles.title}>Hi, Welcome Back! 👋</Text>
-      <Text style={styles.subtitle}>Hello again, you’ve been missed!</Text>
+      <Text style={styles.title}>Create an account</Text>
+      <Text style={styles.subtitle}>Connect with your friends today!</Text>
 
       {/* Input Email */}
       <View style={styles.inputan}>
-        <View style={styles.field}>
-          <Text style={styles.label}>Email</Text>
+      <View style={styles.field}>
+        <Text style={styles.label}>Email Address</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setEmail}
+          value={email}
+          placeholder="Enter your email"
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
+      </View>
+
+      {/* Input Phone */}
+      <View style={styles.field}>
+        <Text style={styles.label}>Phone Number</Text>
+        <View style={styles.phoneRow}>
+          <Text style={styles.prefix}>+62</Text>
+          <View style={styles.line1} />
           <TextInput
-            style={styles.input}
-            onChangeText={setEmail}
-            value={email}
-            placeholder="Enter your email"
-            keyboardType="email-address"
-            autoCapitalize="none"
+            style={styles.phoneInput}
+            onChangeText={setPhone}
+            value={phone}
+            placeholder="Enter your phonenumber"
+            keyboardType="phone-pad"
           />
         </View>
+      </View>
 
-        {/* Input Password */}
-        <View style={styles.field}>
-          <Text style={styles.label}>Password</Text>
-          <View style={styles.passwordRow}>
-            <TextInput
-              style={styles.passwordInput}
-              onChangeText={setPassword}
-              value={password}
-              placeholder="Please Enter Your Password"
-              secureTextEntry={secure}
-            />
-            <TouchableOpacity
-              onPress={() => setSecure(!secure)}
-              style={styles.eyeBtn}
-            >
-              <Ionicons
-                name={secure ? "eye-off" : "eye"}
-                size={20}
-                color="#999"
-              />
-            </TouchableOpacity>
-          </View>
+      {/* Input Password */}
+      <View style={styles.field}>
+        <Text style={styles.label}>Password</Text>
+        <View style={styles.passwordRow}>
+          <TextInput
+            style={[styles.input, { flex: 1, borderWidth: 0 }]}
+            onChangeText={setPassword}
+            value={password}
+            placeholder="Please Enter Your Password"
+            secureTextEntry={secure}
+          />
+          <TouchableOpacity
+            onPress={() => setSecure(!secure)}
+            style={styles.eyeBtn}>
+            <Ionicons
+              name={secure ? "eye-off" : "eye"}
+              size={20}
+              color="#999"/>
+          </TouchableOpacity>
         </View>
+      </View>
       </View>
 
       {/* Remember Me & Forgot Password */}
@@ -69,7 +83,7 @@ export default function LoginScreen() {
           <Checkbox
             value={remember}
             onValueChange={setRemember}
-            color={remember ? "#4E0189" : undefined} // warna saat dicentang
+            color={remember ? "#4E0189" : undefined}
             style={styles.checkbox}
           />
           <Text style={styles.rememberText}>Remember Me</Text>
@@ -79,11 +93,13 @@ export default function LoginScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* Regis Button */}
-      <ButtonPurple
-        label="Next"
+      {/* Sign Up Button */}
+      <TouchableOpacity
+        style={styles.signUpBtn}
         onPress={() => router.push("/fatimah-azzahra/signup")}
-      />
+      >
+        <Text style={styles.signUpBtnText}>Sign Up</Text>
+      </TouchableOpacity>
 
       {/* Or With */}
       <View style={styles.orContainer}>
@@ -112,9 +128,9 @@ export default function LoginScreen() {
 
       {/* Footer */}
       <View style={styles.footer}>
-        <Text style={styles.footerText}>Don’t have an account ? </Text>
-        <TouchableOpacity>
-          <Text style={styles.signUp}>Sign Up</Text>
+        <Text style={styles.footerText}>Already have an account ? </Text>
+        <TouchableOpacity onPress={() => router.push("/fatimah-azzahra/login")}>
+          <Text style={styles.login}>Login</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -140,7 +156,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   inputan: {
-    paddingTop: 40,
+    marginTop: 30
   },
   field: {
     marginBottom: 16,
@@ -158,21 +174,34 @@ const styles = StyleSheet.create({
     padding: 12,
     fontSize: 14,
   },
+  phoneRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+    paddingHorizontal: 12,
+  },
+  prefix: {
+    fontSize: 14,
+    marginRight: 8,
+    color: "#555",
+  },
+  phoneInput: {
+    flex: 1,
+    fontSize: 14,
+    paddingVertical: 10,
+  },
   passwordRow: {
     flexDirection: "row",
     alignItems: "center",
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 8,
-    paddingHorizontal: 10,
-  },
-  passwordInput: {
-    flex: 1,
-    fontSize: 14,
-    paddingVertical: 10,
+    paddingRight: 10,
   },
   eyeBtn: {
-    padding: 6,
+    paddingHorizontal: 6,
   },
   row: {
     flexDirection: "row",
@@ -194,6 +223,18 @@ const styles = StyleSheet.create({
     color: "#FB344F",
     fontSize: 14,
   },
+  signUpBtn: {
+    backgroundColor: "#4E0189",
+    borderRadius: 8,
+    paddingVertical: 14,
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  signUpBtnText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "600",
+  },
   orContainer: {
     flexDirection: "row",
     alignItems: "center",
@@ -203,6 +244,11 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 1,
     backgroundColor: "#000000",
+  },
+  line1: {
+    height:35,
+    width: 1,
+    backgroundColor: "#ccc",
   },
   orText: {
     marginHorizontal: 8,
@@ -244,7 +290,7 @@ const styles = StyleSheet.create({
     color: "#999EA1",
     fontSize: 14,
   },
-  signUp: {
+  login: {
     color: "#4E0189",
     fontSize: 14,
     fontWeight: "600",
