@@ -11,6 +11,17 @@ export default function homeScreen() {
           title="Learn More"
           color="#841584"
         />
+
+        <ButtonPrimary
+          label="Next"
+          onPress={()=>{}}
+        />
+
+        <ButtonSecondary
+          label="Selanjutnya"
+          onPress={()=>{}}
+        />
+
         <Button
           onPress={()=> router.push("/gema_satya_nugroho")}
           title="Halaman Gema"

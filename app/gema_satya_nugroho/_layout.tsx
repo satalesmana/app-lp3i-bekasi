@@ -5,6 +5,7 @@ export default function Layout() {
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="loginPage" options={{ headerShown: false }} />
+      <Stack.Screen name="registerPage" options={{ headerShown: false }} />
     </Stack>
   );
 }
