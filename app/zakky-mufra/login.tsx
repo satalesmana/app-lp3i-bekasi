@@ -1,16 +1,25 @@
 import React, { useState } from "react";
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View, } from "react-native";
-import Icon from "react-native-vector-icons/Feather";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert, } from "react-native";
+import { useRouter } from "expo-router"; // ⬅️ tambahkan ini
 
-export default function LoginScreen({ navigation }: any) {
+export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter(); // ⬅️ untuk navigasi
+
+  const handleLogin = () => {
+    if (email === "" || password === "") {
+      Alert.alert("Login Failed", "Please enter your email and password");
+    } else {
+      Alert.alert("Login Success", `Welcome back, ${email}!`);
+    }
+  };
 
   return (
     <View style={styles.container}>
       {/* Gambar ilustrasi */}
       <Image
-        source={require("@/assets/images/travel.png")} // ganti sesuai assetmu
+        source={require("@/assets/images/tali.png")}
         style={styles.image}
         resizeMode="contain"
       />
@@ -28,7 +37,6 @@ export default function LoginScreen({ navigation }: any) {
           value={email}
           onChangeText={setEmail}
         />
-        <Icon name="mail" size={20} color="#aaa" style={styles.icon} />
       </View>
 
       {/* Input Password */}
@@ -41,33 +49,30 @@ export default function LoginScreen({ navigation }: any) {
           value={password}
           onChangeText={setPassword}
         />
-        <Icon name="lock" size={20} color="#aaa" style={styles.icon} />
       </View>
 
       {/* Remember + Forget */}
       <View style={styles.row}>
-        <TouchableOpacity style={styles.checkboxWrapper}>
+        <View style={styles.checkboxWrapper}>
           <View style={styles.checkbox} />
           <Text style={styles.rememberText}>Remember me</Text>
-        </TouchableOpacity>
+        </View>
         <TouchableOpacity>
           <Text style={styles.forgetText}>Forget password ?</Text>
         </TouchableOpacity>
       </View>
 
       {/* Tombol Next */}
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("zakky-mufra/index")}
-      >
-        <Text style={styles.buttonText}>Next</Text>
-        <Text style={styles.arrow}>{">"}</Text>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Next ➜</Text>
       </TouchableOpacity>
 
       {/* Register */}
       <View style={styles.registerWrapper}>
         <Text style={styles.normalText}>New Member? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+        <TouchableOpacity
+          onPress={() => router.push("/zakky-mufra/register")} // ⬅️ arahkan ke file register
+        >
           <Text style={styles.registerText}>Register now</Text>
         </TouchableOpacity>
       </View>
@@ -100,21 +105,15 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: "100%",
-    flexDirection: "row",
-    alignItems: "center",
     backgroundColor: "#f5f5f5",
     borderRadius: 10,
     paddingHorizontal: 10,
     marginBottom: 15,
   },
   input: {
-    flex: 1,
     padding: 12,
     fontSize: 14,
     color: "#000",
-  },
-  icon: {
-    marginLeft: 5,
   },
   row: {
     width: "100%",
@@ -154,11 +153,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     fontWeight: "600",
-  },
-  arrow: {
-    color: "#fff",
-    fontSize: 20,
-    marginLeft: 5,
   },
   registerWrapper: {
     flexDirection: "row",
