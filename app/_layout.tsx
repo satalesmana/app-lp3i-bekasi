@@ -11,6 +11,7 @@ export default function RootLayout() {
       <Stack.Screen name="gema_satya_nugroho" options={{headerShown: false}} />
       <Stack.Screen name="fatimah-azzahra" options={{headerShown: false}} />
       <Stack.Screen name="salsabila-nurul" options={{headerShown: false}} />
+      <Stack.Screen name="muhamad-tohir" options={{headerShown: false}} />
     </Stack>
   );
 }
