@@ -1,9 +1,11 @@
-import { ButtonWarning } from "@/componets/myButton";
-import { router } from "expo-router";
-import { useState } from "react";
-import { Alert, Image, StyleSheet, Text, TextInput, View } from "react-native";
+import {useState} from "react";
+import {Alert, Image, Pressable, StyleSheet, Text, TextInput, View} from "react-native";
+import {router} from "expo-router";
+import {ButtonWarning} from "@/componets/myButton";
+
 
 export default function LoginScreen() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -23,9 +25,17 @@ export default function LoginScreen() {
       </View>
 
       {/* --- Title --- */}
-      <Text style={styles.title}>Login Details</Text>
+      <Text style={styles.title}>Register account</Text>
 
       {/* --- Input fields --- */}
+      <TextInput
+        style={styles.input}
+        onChangeText={setName}
+        value={name}
+        placeholder="Fullname"
+        placeholderTextColor="#888"
+      />
+
       <TextInput
         style={styles.input}
         onChangeText={setEmail}
@@ -43,14 +53,13 @@ export default function LoginScreen() {
         secureTextEntry
       />
 
-      {/* --- Forgot password --- */}
-      <Text style={styles.forgotPassword}>Forgot Password ?</Text>
 
       {/* --- Login Button --- */}
       <ButtonWarning
         label="Login"
-        onPress={()=>{router.push('/salsabila-nurul/register')}}
+        onPress={()=>{}}
         />
+      
 
       {/* --- Divider --- */}
       <View style={styles.dividerContainer}>
@@ -94,13 +103,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 12,
     marginTop: 12
-  },
-  forgotPassword: {
-    alignSelf: "flex-end",
-    marginTop: 8,
-    color: "#000",
-    fontSize: 13,
-    fontWeight: "500"
   },
   loginText: {
     color: "#fff",

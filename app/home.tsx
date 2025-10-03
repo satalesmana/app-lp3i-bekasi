@@ -18,12 +18,6 @@ export default function homeScreen() {
         />
         
         <Button
-          onPress={()=> router.push("/salsabila-nurul")}
-          title="Halaman Salsabila"
-          color="#841584"
-          />
-        
-        <Button
           onPress={()=> router.push("/zakky-mufra")}
           title="Learn More"
           />
@@ -57,7 +51,7 @@ export default function homeScreen() {
 
         <Button
           onPress={()=> router.push("/ade")}
-          label="Halaman Ade"
+          title="Halaman Ade"
           color="#841584F"
         />
         <Button
@@ -65,6 +59,13 @@ export default function homeScreen() {
           title="Login Hendrawan"
           color="#841584"
         />
+         
+        <Button
+          onPress={()=> router.push("/salsabila-nurul")}
+          title="Halaman Salsabila"
+          color="#007bff"
+          />
+
     </View>
     
   );
