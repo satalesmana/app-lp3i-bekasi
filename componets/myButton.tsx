@@ -22,6 +22,14 @@ export const ButtonSecondary =(props:Props)=>{
     )
 }
 
+export const ButtonRegister = (props:Props)=>{
+    return(
+        <TouchableOpacity style={styles.btnRegister} onPress={props.onPress}>
+            <Text style={styles.btnLabel}>{props.label}</Text>
+        </TouchableOpacity>
+    )
+}
+
 const styles = StyleSheet.create({
     btnPrimary:{
         marginTop:10,
@@ -45,8 +53,19 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         gap: 15
     },
+    btnRegister:{
+        backgroundColor:'#2563eb',
+        height: 50,
+        borderRadius:10,
+        display:'flex',
+        alignItems:'center',
+        justifyContent:'center',
+        flexDirection:'row',
+        gap: 15,
+        marginBottom: 24,
+    },
     btnLabel:{
         color:'#FCFCFC',
-        fontSize:20
+        fontSize:15
     }
 })

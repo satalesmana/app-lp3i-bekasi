@@ -1,9 +1,9 @@
+import { ButtonRegister } from "@/componets/myButton";
 import { MaterialIcons } from "@expo/vector-icons";
-import Checkbox from "expo-checkbox";
-import { useRouter } from "expo-router";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import {
-  Alert,
   Image,
   StyleSheet,
   Text,
@@ -12,32 +12,64 @@ import {
   View,
 } from "react-native";
 
-const Login = () => {
+const Register = () => {
+  const [name, setName] = useState("");
+  const [dob, setDob] = useState(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [keepLoggedIn, setKeepLoggedIn] = useState(false);
 
-  const router = useRouter();
-
-  const handleLogin = () => {
-    if (email === "" || password === "") {
-      Alert.alert("Login Failed", "Email dan password wajib diisi!");
-    } else if (email !== "user@example.com" || password !== "123456") {
-      Alert.alert("Login Failed", "Email atau password salah!");
-    } else {
-      Alert.alert("Login Success", "Selamat datang kembali!");
-    }
+  const handleSignUp = () => {
+    // sementara alert, nanti bisa ditambah API register
+    alert(`Account created!\nWelcome ${name}`);
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         {/* Title */}
-        <Text style={styles.title}>Sign in</Text>
+        <Text style={styles.title}>Sign up</Text>
         <Text style={styles.subtitle}>
-          Please login to continue to your account.
+          Sign up to enjoy the feature of Revolutie
         </Text>
+
+        {/* Name */}
+        <View style={styles.inputWrapper}>
+          {name !== "" && <Text style={styles.label}>Your Name</Text>}
+          <TextInput
+            style={styles.input}
+            placeholder="Your Name"
+            value={name}
+            onChangeText={setName}
+          />
+        </View>
+
+        {/* Date of Birth */}
+        <View style={styles.inputWrapper}>
+          <Text style={styles.label}>Date of Birth</Text>
+          <TouchableOpacity
+            style={styles.input}
+            onPress={() => setShowDatePicker(true)}
+          >
+            <Text style={{ color: dob ? "#000" : "#9ca3af" }}>
+              {dob ? dob.toDateString() : "Select Date"}
+            </Text>
+          </TouchableOpacity>
+          {showDatePicker && (
+  <DateTimePicker
+    value={dob}
+    mode="date"
+    display="default"
+    onChange={(event: any, selectedDate?: Date) => {
+      setShowDatePicker(false);
+      if (selectedDate) {
+        setDob(selectedDate);
+          }
+        }}
+      />
+    )}
+    </View>
 
         {/* Email */}
         <View style={styles.inputWrapper}>
@@ -75,20 +107,11 @@ const Login = () => {
           </View>
         </View>
 
-        {/* Checkbox */}
-        <View style={styles.checkboxContainer}>
-          <Checkbox
-            value={keepLoggedIn}
-            onValueChange={setKeepLoggedIn}
-            color={keepLoggedIn ? "#2563eb" : undefined}
-          />
-          <Text style={styles.checkboxLabel}>Keep me logged in</Text>
-        </View>
-
-        {/* Sign in button */}
-        <TouchableOpacity style={styles.signInButton} onPress={handleLogin}>
-          <Text style={styles.signInText}>Sign in</Text>
-        </TouchableOpacity>
+        {/* Sign up button */}
+        <ButtonRegister
+            label="Sign up"
+            onPress={()=>{}}
+              />
 
         {/* Divider */}
         <View style={styles.dividerContainer}>
@@ -99,7 +122,7 @@ const Login = () => {
 
         {/* Google login */}
         <TouchableOpacity style={styles.googleButton}>
-          <Text style={styles.googleText}>Sign in with Google</Text>
+          <Text style={styles.googleText}>Continue with Google</Text>
           <Image
             source={require("../../assets/images/google.png")}
             style={styles.googleIcon}
@@ -108,12 +131,12 @@ const Login = () => {
 
         {/* Footer */}
         <Text style={styles.footer}>
-          Need an account?{" "}
+          Already have an account?{" "}
           <Text
             style={styles.link}
-            onPress={() => router.push("/Hafiizh/register")}
+            onPress={() => router.push("/Hafiizh/login")}
           >
-            Create one
+            Sign in
           </Text>
         </Text>
       </View>
@@ -121,7 +144,7 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
 
 const styles = StyleSheet.create({
   container: {
@@ -176,28 +199,6 @@ const styles = StyleSheet.create({
   },
   iconWrapper: {
     paddingHorizontal: 12,
-  },
-  checkboxContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  checkboxLabel: {
-    marginLeft: 8,
-    fontSize: 14,
-    color: "#000000",
-  },
-  signInButton: {
-    backgroundColor: "#2563eb",
-    paddingVertical: 14,
-    borderRadius: 8,
-    alignItems: "center",
-    marginBottom: 24,
-  },
-  signInText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "600",
   },
   dividerContainer: {
     flexDirection: "row",

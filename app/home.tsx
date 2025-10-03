@@ -21,11 +21,11 @@ export default function homeScreen() {
           label="Selanjutnya"
           onPress={()=>{}}
           />
-        />
+
         <Button
           onPress={()=> router.push("/Hafiizh")}
           title="Hafiizh"
-          color="#841584"
+          color="#841584" 
         />
     </View>
   );
