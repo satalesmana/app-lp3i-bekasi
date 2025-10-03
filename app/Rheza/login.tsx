@@ -2,15 +2,17 @@ import { View, Image, StyleSheet, Text, TextInput, Pressable, Alert } from 'reac
 import { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Checkbox } from 'expo-checkbox';
+import { router } from 'expo-router';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isChecked, setChecked] = useState(false);
-  const onSubmitLogin = ()=>{
-      Alert.alert('Info', 'Login Gagal', [
+    
+const onSubmitLogin = ()=>{
+        Alert.alert('Info', 'Login Gagal', [
         {text: 'OK', onPress: () => console.log('OK Pressed')},
-      ]);
+        ]);
     }
 
   return (
@@ -70,7 +72,7 @@ export default function Login() {
         <Pressable onPress={onSubmitLogin} style={style.btnLogin}>
           <Text style={style.textBtn}>Next <Ionicons name="chevron-forward" size={20} /></Text>
         </Pressable>
-        <Text style={style.titleLogin}>New member? <Text style={style.titleLogin2}>Register now</Text></Text>
+        <Text style={style.titleLogin}>New member? <Text onPress={() => router.push('/Rheza/regist')} style={style.titleLogin2}>Register now</Text></Text>
       </View>
     </View>
   );

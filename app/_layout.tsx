@@ -7,6 +7,7 @@ export default function RootLayout() {
       <Stack.Screen name="home" />
       <Stack.Screen name="sata-lesmana" options={{headerShown: false}} />
       <Stack.Screen name="Rheza" options={{headerShown: false}} />
+      <Stack.Screen name="Rheza/regist" options={{headerShown: false}} />
     </Stack>
   );
 }
