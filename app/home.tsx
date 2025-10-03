@@ -1,8 +1,14 @@
 import { ButtonPrimary, ButtonSecondary } from "@/componets/myButton";
 import { router } from "expo-router";
 import { Button, Text, View } from "react-native";
+import { useDispatch, useSelector } from 'react-redux';
+import { decrement, increment } from '../store/reducer/counterSlice';
+
 
 export default function homeScreen() {
+  const count = useSelector(state => state.counter.value)
+  const dispatch = useDispatch()
+
   return (
     <View style={{padding: 15}}>
         <Text>ini halaman home</Text>
@@ -18,14 +24,16 @@ export default function homeScreen() {
         />
 
         <ButtonPrimary
-          label="Next"
-          onPress={()=>{}}
+          label="Increment"
+          onPress={() => dispatch(increment())}
           />
 
         <ButtonSecondary
-          label="Selanjutnya"
-          onPress={()=>{}}
+          label="Decrement"
+          onPress={() => dispatch(decrement())}
           />
+
+        <Text>{count}</Text>
     </View>
   );
 }
