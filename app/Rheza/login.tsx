@@ -3,13 +3,28 @@ import { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Checkbox } from 'expo-checkbox';
 import { router } from 'expo-router';
+import { useDispatch } from 'react-redux';
+import { setUsers } from '../../store/reducer/userSlice';
+
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isChecked, setChecked] = useState(false);
+  const dispatch = useDispatch();
     
 const onSubmitLogin = ()=>{
+        if(email==='rheza@mail.com' && password === 'tes123'){
+              dispatch(setUsers({
+                  name: "Rheza",
+                  email: "rheza@mail.com",
+                  gender: "Pria",
+                  dateOfBirth: "20-05-2006",
+                  address: "Jl. Kemuning III"
+              }))
+              router.replace("/Rheza/home")
+              return;
+          }
         Alert.alert('Info', 'Login Gagal', [
         {text: 'OK', onPress: () => console.log('OK Pressed')},
         ]);

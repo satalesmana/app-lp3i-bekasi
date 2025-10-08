@@ -5,10 +5,12 @@ import store from '../store/index';
 export default function RootLayout() {
   return(
     <Provider store={store}>
-      <Stack>
+      <Stack >
         <Stack.Screen name="index" options={{ headerShown: false }} />  
         <Stack.Screen name="home" />
         <Stack.Screen name="sata-lesmana" options={{headerShown: false}} />
+        <Stack.Screen name="Rheza" options={{headerShown: false}} />
+        <Stack.Screen name="/Rheza/regist" options={{headerShown: false}} />
       </Stack>
     </Provider>
   );
