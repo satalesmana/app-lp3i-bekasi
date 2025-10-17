@@ -1,45 +1,42 @@
-import { useLocalSearchParams } from 'expo-router';
 import { useState } from "react";
 import { Text, View } from "react-native";
 import { useSelector } from 'react-redux';
 
-export default function SataLesmanaIndex() {
+export default function FatimahIndex() {
  const user = useSelector((state:any) => state.user.user)
- const [example, setExample] = useState();
- const params = useLocalSearchParams();
- 
+  const [example] = useState("nama usestate");
+
   return (
     <View>
         <View style={{display:"flex", flexDirection:"row"}}>
-            <Text style={{flex:1}}>Nama</Text>
+            <Text>Nama</Text>
             <Text>{user.name}</Text>
         </View>
 
         <View style={{display:"flex", flexDirection:"row"}}>
-            <Text style={{flex:1}}>Email</Text>
+            <Text>Email</Text>
             <Text>{user.email}</Text>
         </View>
 
         <View style={{display:"flex", flexDirection:"row"}}>
-            <Text style={{flex:1}}>Gender</Text>
+            <Text>Gender</Text>
             <Text>{user.gender}</Text>
         </View>
 
         <View style={{display:"flex", flexDirection:"row"}}>
-            <Text style={{flex:1}}>Alamat</Text>
+            <Text>Date</Text>
+            <Text>{user.dateOfBirth}</Text>
+        </View>
+
+        <View style={{display:"flex", flexDirection:"row"}}>
+            <Text>Alamat</Text>
             <Text>{user.address}</Text>
         </View>
 
         <View style={{display:"flex", flexDirection:"row"}}>
-            <Text style={{flex:1}}>use state</Text>
+            <Text>use state</Text>
             <Text>{example}</Text>
         </View>
-
-        <View style={{display:"flex", flexDirection:"row"}}>
-            <Text style={{flex:1}}>value from params</Text>
-            <Text>{params.example}</Text>
-        </View>
-
     </View>
   );
 }

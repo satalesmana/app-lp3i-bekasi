@@ -8,15 +8,36 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  Alert,
 } from "react-native";
 import Checkbox from "expo-checkbox"; 
 import { Ionicons } from "@expo/vector-icons";
+import { useDispatch } from 'react-redux';
+import { setUsers } from '../../store/reducer/userSlice';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
   const [secure, setSecure] = useState(true);
+  const dispatch = useDispatch();
+
+  const SubmitLogin = ()=>{
+          if(email==='fatim@gmail.com' && password === 'tes123'){
+              dispatch(setUsers({
+                  name: "Fatimah Azzahra",
+                  email: "fatim@gmail.com",
+                  gender: "Perempuan",
+                  dateOfBirth: "08-01-2007",
+                  address: "Ujung Harapan"
+              }))
+              router.replace("/fatimah-azzahra/home")
+              return;
+          }
+          Alert.alert('Info', 'Login Gagal', [
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ]);
+      }
 
   return (
     <View style={styles.container}>
@@ -81,8 +102,8 @@ export default function LoginScreen() {
 
       {/* Regis Button */}
       <ButtonPurple
-        label="Next"
-        onPress={() => router.push("/fatimah-azzahra/signup")}
+        label="Login"
+        onPress={SubmitLogin}
       />
 
       {/* Or With */}
@@ -113,7 +134,7 @@ export default function LoginScreen() {
       {/* Footer */}
       <View style={styles.footer}>
         <Text style={styles.footerText}>Don’t have an account ? </Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/fatimah-azzahra/signup")}>
           <Text style={styles.signUp}>Sign Up</Text>
         </TouchableOpacity>
       </View>
