@@ -22,14 +22,6 @@ export const ButtonSecondary =(props:Props)=>{
     )
 }
 
-export const ButtonWarning =(props:Props)=>{
-    return(
-        <TouchableOpacity style={styles.btnWarning} onPress={props.onPress}>
-          <Text style={styles.btnLabel}>{props.label}</Text>
-        </TouchableOpacity>
-    )
-}
-
 const styles = StyleSheet.create({
     btnPrimary:{
         marginTop:10,
@@ -45,17 +37,6 @@ const styles = StyleSheet.create({
     btnSecondary:{
         marginTop:10,
         backgroundColor:'#36079bff',
-        height: 50,
-        borderRadius:10,
-        display:'flex',
-        alignItems:'center',
-        justifyContent:'center',
-        flexDirection:'row',
-        gap: 15
-    },
-    btnWarning:{
-        marginTop:10,
-        backgroundColor:'#007bff',
         height: 50,
         borderRadius:10,
         display:'flex',
