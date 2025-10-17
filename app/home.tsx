@@ -1,4 +1,3 @@
-import { ButtonPrimary, ButtonSecondary } from "@/componets/myButton";
 import { router } from "expo-router";
 import { Button, Text, View } from "react-native";
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,11 +14,50 @@ export default function homeScreen() {
         <Button
           onPress={()=> router.push("/sata-lesmana")}
           title="Learn More"
+          color="#841584"/>
+
+        <Text>ini halaman home</Text>
+        <Button
+          onPress={()=> router.push("/muhamad-tohir")}
+          title="halaman tohir"
           color="#841584"
         />
-        <ButtonPrimary
+        
+        <Button
+          onPress={()=> router.push("/zakky-mufra")}
+          title="Learn More"
+          />
+
+        <Button
+          onPress={()=> router.push("/dayat")}
+          title="halaman dayat"
+        />
+        
+        <Button
+          onPress={()=> router.push("/Hafiizh")}
+          title="Hafiizh"
+        />
+        
+        <Button
+          onPress={()=> router.push("/Rheza")}
+          title="Rheza"
+        />
+        
+        <Button
+          onPress={()=> router.push("/gema_satya_nugroho")}
+          title="Halaman Gema"
+          color="#841584"
+        />
+        <Button
+          onPress={()=> router.push("/fatimah-azzahra")}
+          title="Fatimah"
+          color="#841584"
+        />
+        
+
+        <Button
           onPress={()=> router.push("/ade")}
-          label="Halaman Ade"
+          title="Halaman Ade"
           color="#841584F"
         />
 
@@ -35,5 +73,6 @@ export default function homeScreen() {
 
         <Text>{count}</Text>
     </View>
+    
   );
 }
