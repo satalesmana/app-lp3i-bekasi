@@ -42,7 +42,22 @@ export default function RhezaIndex() {
           <Text style={styles.value}>{example}</Text>
         </View>
       </View>
-    </View>
+
+      <ButtonPrimary
+            label="User Profile"
+            onPress={() => router.push("../Rheza/profile")}
+            />
+        
+        <ButtonPrimary
+            label="User Profile wit params"
+            onPress={() =>router.push({
+                pathname: "../Rheza/profile",
+                params: {
+                    example: example
+                }
+            })}
+            />
+    </View>  
   );
 }
 

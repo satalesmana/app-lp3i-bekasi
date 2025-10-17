@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Text, View } from "react-native";
 import { useSelector } from 'react-redux';
 
-export default function SataLesmanaIndex() {
+export default function RhezaIndex() {
  const user = useSelector((state:any) => state.user.user)
  const [example, setExample] = useState();
  const params = useLocalSearchParams();
