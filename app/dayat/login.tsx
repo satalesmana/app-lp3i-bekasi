@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import { useState } from "react";
 import {
   Alert,
@@ -5,27 +6,49 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  View
+  View,
 } from "react-native";
+import { useDispatch } from "react-redux";
+import { setUsers } from "../../store/reducer/userSlice";
 
-export default function LoginScreen({ navigation }: any) {
+export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
   const onSubmitLogin = () => {
     if (email === "" || password === "") {
       Alert.alert("Error", "Please fill in all fields");
       return;
     }
-    Alert.alert("Info", "Login Success", [
-      { text: "OK", onPress: () => console.log("OK Pressed") },
-    ]);
+
+    // Validasi login
+    if (email === "hidayataja12@gmail.com" && password === "dayat123") {
+      dispatch(
+        setUsers({
+          name: "Hidayat Aja",
+          email: "hidayataja12@gmail.com",
+          gender: "Pria",
+          dateOfBirth: "12-12-2000",
+          address: "Bekasi, Jawa Barat",
+        })
+      );
+
+      // Navigasi ke halaman Home
+      router.replace({
+        pathname: "/dayat/home", // pastikan path sesuai folder kamu
+        params: { message: "Selamat datang di halaman Home!" },
+      });
+      return;
+    }
+
+    Alert.alert("Info", "Login Gagal", [{ text: "OK" }]);
   };
 
   return (
     <View style={style.container}>
       {}
-      <Pressable style={style.closeBtn} onPress={() => navigation.goBack()}>
+      <Pressable style={style.closeBtn} onPress={() => router.back()}>
         <Text style={{ fontSize: 20 }}>×</Text>
       </Pressable>
 

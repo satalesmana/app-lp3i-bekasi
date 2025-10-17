@@ -1,14 +1,29 @@
+import { router } from "expo-router";
 import { useState } from "react";
 import { Alert, Image, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { useDispatch } from 'react-redux';
+import { setUsers } from '../../store/reducer/userSlice';
 
 
 export default function LoginScreen(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
 
     const onSubmitLogin = ()=>{
+        if(email==='sata@mail.com' && password === 'tes123'){
+            dispatch(setUsers({
+                name: "Sata Lesmana",
+                email: "sata@mail.com",
+                gender: "Pria",
+                dateOfBirth: "01-01-1001",
+                address: "Jl. Demo tes"
+            }))
+            router.replace("/sata-lesmana/home")
+            return;
+        }
         Alert.alert('Info', 'Login Gagal', [
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
         ]);
     }
 

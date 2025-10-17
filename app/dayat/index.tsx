@@ -5,8 +5,8 @@ export default function WelcomeScreen() {
   const router = useRouter(); 
 
   return (
-    <View style={{ paddingTop: 40, flex: 1, backgroundColor: "#fff" }}>
-      {}
+    <View style={style.main}>
+      {/* Gambar */}
       <View style={style.imageContainer}>
         <Image
           source={require("../../assets/images/welcomedayat.png")} 
@@ -14,12 +14,12 @@ export default function WelcomeScreen() {
         />
       </View>
 
-      {}
-      <View style={[style.container, style.containerHeroText]}>
+      {/* Text */}
+      <View style={style.containerHeroText}>
         <Text style={style.welcomeText}>Welcome to Light</Text>
       </View>
 
-      {}
+      {/* Tombol */}
       <View style={style.container}>
         <Pressable
           style={[style.btnPrimary, { marginTop: 40 }]}
@@ -28,7 +28,6 @@ export default function WelcomeScreen() {
           <Text style={style.btnText}>Create new account</Text>
         </Pressable>
 
-        {}
         <Pressable onPress={() => router.push("/dayat/login")}>
           <Text style={style.linkText}>I already have an account</Text>
         </Pressable>
@@ -38,19 +37,25 @@ export default function WelcomeScreen() {
 }
 
 const style = StyleSheet.create({
+  main: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "center",   // <-- Tengah vertikal
+    alignItems: "center",       // <-- Tengah horizontal
+    paddingHorizontal: 20,
+  },
   container: {
-    marginLeft: 20,
-    marginRight: 20,
+    width: "100%", 
   },
   containerHeroText: {
-    marginTop: 30,
+    marginTop: 20,
+    marginBottom: 10,
     alignItems: "center",
   },
   imageContainer: {
-    display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 40,
+    marginBottom: 20,
   },
   image: {
     width: 250,
@@ -66,7 +71,6 @@ const style = StyleSheet.create({
     backgroundColor: "#0D6EFD",
     borderRadius: 8,
     height: 50,
-    display: "flex",
     alignItems: "center",
     justifyContent: "center",
   },
