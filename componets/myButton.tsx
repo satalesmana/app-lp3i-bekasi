@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TouchableOpacity } from "react-native"
+import { StyleSheet, Text, TouchableOpacity } from "react-native"
 interface Props {
     onPress: () => void,
     label: string
@@ -8,7 +8,7 @@ export const ButtonPrimary =(props:Props)=>{
     return(
         <TouchableOpacity style={styles.btnPrimary} onPress={props.onPress}>
           <Text style={styles.btnLabel}>{props.label}</Text>
-          <Image source={require('../assets/images/chevron-right.png')} />
+          {/* <Image source={require('../assets/images/chevron-right.png')} /> */}
         </TouchableOpacity>
     )
 }
@@ -17,7 +17,7 @@ export const ButtonSecondary =(props:Props)=>{
     return(
         <TouchableOpacity style={styles.btnSecondary} onPress={props.onPress}>
           <Text style={styles.btnLabel}>{props.label}</Text>
-          <Image source={require('../assets/images/chevron-right.png')} />
+          {/* <Image source={require('../assets/images/chevron-right.png')} /> */}
         </TouchableOpacity>
     )
 }
