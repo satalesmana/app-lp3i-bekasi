@@ -11,6 +11,11 @@ export default function homeScreen() {
           title="Learn More"
           color="#841584"
         />
+        <Button
+          onPress={()=> router.push("/syuby-alwi-akbar-attala")}
+          title="Tugas Syuby"
+          color="#22a2d4ff"
+        />
     </View>
   );
 }
