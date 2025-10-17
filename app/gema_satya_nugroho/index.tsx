@@ -1,13 +1,9 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { router } from "expo-router";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function AuthScreen() {
   return (
     <View style={styles.container}>
-      {/* Tombol Back */}
-      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-        <Text style={styles.backText}>← Kembali</Text>
-      </TouchableOpacity>
 
       {/* Ilustrasi */}
       <View style={styles.centerContent}>
@@ -22,7 +18,8 @@ export default function AuthScreen() {
       <View style={styles.bottomButtons}>
         {/* Register & Login sejajar */}
         <View style={styles.rowButtons}>
-          <TouchableOpacity style={[styles.halfButton, styles.outlineButton]}>
+          <TouchableOpacity style={[styles.halfButton, styles.outlineButton]}
+          onPress={() => router.push("/gema_satya_nugroho/registerPage")}>
             <Text style={[styles.buttonText, styles.outlineText]}>REGISTER</Text>
           </TouchableOpacity>
 
@@ -51,17 +48,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-  },
-  backButton: {
-    position: "absolute",
-    top: 50,
-    left: 20,
-    padding: 8,
-  },
-  backText: {
-    fontSize: 16,
-    fontWeight: "500",
-    color: "#2e7d32",
   },
   centerContent: {
     flex: 1,

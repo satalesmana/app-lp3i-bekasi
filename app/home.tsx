@@ -1,7 +1,13 @@
+import { ButtonPrimary, ButtonSecondary } from "@/componets/myButton";
 import { router } from "expo-router";
 import { Button, Text, View } from "react-native";
+import { useDispatch, useSelector } from 'react-redux';
+import { decrement, increment } from '../store/reducer/counterSlice';
 
 export default function homeScreen() {
+  const count = useSelector(state => state.counter.value)
+  const dispatch = useDispatch()
+
   return (
     <View style={{padding: 15}}>
         <Text>ini halaman home</Text>
@@ -39,8 +45,7 @@ export default function homeScreen() {
         
         <Button
           onPress={()=> router.push("/gema_satya_nugroho")}
-          title="Halaman Gema"
-          color="#841584"
+          label="Halaman Gema"
         />
         <Button
           onPress={()=> router.push("/fatimah-azzahra")}

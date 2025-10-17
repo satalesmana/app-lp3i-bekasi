@@ -9,13 +9,34 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useDispatch } from "react-redux";
+import { router } from "expo-router";
+import { setUsers } from "../../store/reducer/userSlice";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
 
   const onSubmitLogin = () => {
+    if (email === "gema@mail.com" && password === "tes123") {
+      // Simpan data user ke redux
+      dispatch(
+        setUsers({
+          name: "Gema Satya Nugroho",
+          email: "gema@mail.com",
+          gender: "Pria",
+          dateOfBirth: "28-01-2005",
+          address: "Jl. Demo tes",
+        })
+      );
+
+      // Navigasi ke halaman home
+      router.replace("/gema_satya_nugroho/homePage");
+      return;
+    }
+
     Alert.alert("Info", "Login Gagal", [
       { text: "OK", onPress: () => console.log("OK Pressed") },
     ]);
