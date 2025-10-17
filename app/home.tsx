@@ -54,7 +54,7 @@ export default function homeScreen() {
 
 
   return (
-    <View style={{padding: 15}}>
+    <View style={{flex: 1, padding: 15}}>
         <Text style={{textAlign:'center', fontWeight: "bold", fontSize: 18}}>Menu menggunakan Map</Text>
         {
           menu.map((item, index) => {
@@ -75,7 +75,7 @@ export default function homeScreen() {
         <FlatList
           data={menuFlatlist}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({item}) => <RenderItem item={item} />}
+          renderItem={({item}) => <View><RenderItem item={item} /></View>}
         />
     </View>
     
