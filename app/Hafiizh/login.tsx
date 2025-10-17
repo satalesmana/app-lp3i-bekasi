@@ -1,7 +1,7 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Alert,
   Image,
@@ -11,6 +11,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useDispatch } from "react-redux";
+import { setUsers } from "../../store/reducer/userSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,16 +21,24 @@ const Login = () => {
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
 
   const router = useRouter();
+  const dispatch = useDispatch();
 
-  const handleLogin = () => {
-    if (email === "" || password === "") {
-      Alert.alert("Login Failed", "Email dan password wajib diisi!");
-    } else if (email !== "user@example.com" || password !== "123456") {
-      Alert.alert("Login Failed", "Email atau password salah!");
-    } else {
-      Alert.alert("Login Success", "Selamat datang kembali!");
-    }
-  };
+  const onSubmitLogin = ()=>{
+          if(email==='Hafiizh.alfath33@gmail.com' && password === '123'){
+              dispatch(setUsers({
+                  name: "Muhammad Hafiizh Alfath",
+                  email: "Hafiizh.alfath33@gmail.com",
+                  gender: "Pria",
+                  dateOfBirth: "12-12-2004",
+                  address: "Los santos"
+              }))
+              router.replace("/Hafiizh/home")
+              return;
+          }
+          Alert.alert('Info', 'Login Gagal', [
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ]);
+      }
 
   return (
     <View style={styles.container}>
@@ -86,7 +96,7 @@ const Login = () => {
         </View>
 
         {/* Sign in button */}
-        <TouchableOpacity style={styles.signInButton} onPress={handleLogin}>
+        <TouchableOpacity style={styles.signInButton} onPress={onSubmitLogin}>
           <Text style={styles.signInText}>Sign in</Text>
         </TouchableOpacity>
 

@@ -6,7 +6,7 @@ import { decrement, increment } from '../store/reducer/counterSlice';
 
 
 export default function homeScreen() {
-  const count = useSelector(state => state.counter.value)
+  const count = useSelector((state:any) => state.counter.value)
   const dispatch = useDispatch()
 
   return (
@@ -27,6 +27,12 @@ export default function homeScreen() {
           label="Decrement"
           onPress={() => dispatch(decrement())}
           />
+  
+          <Button
+          onPress={()=> router.push("/Hafiizh")}
+          title="M Hafiizh"
+          color="#841584"
+        />
     </View>
   );
 }
