@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert, } from "react-native";
+import { useRouter } from "expo-router";
 
 export default function RegisterScreen() {
   const [fullName, setFullName] = useState("");
@@ -14,6 +15,8 @@ export default function RegisterScreen() {
       Alert.alert("Register Success", `Welcome, ${fullName}!`);
     }
   };
+
+  const router = useRouter();
 
   return (
     <View style={styles.container}>
@@ -78,11 +81,9 @@ export default function RegisterScreen() {
       {/* Sudah punya akun */}
       <View style={styles.loginWrapper}>
         <Text style={styles.normalText}>Already a member? </Text>
-        <TouchableOpacity
-          onPress={() => Alert.alert("Login", "Go to login page")}
-        >
-          <Text style={styles.loginText}>Log In</Text>
-        </TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/zakky-mufra/login")}>
+  <Text style={styles.loginText}>Log In</Text>
+</TouchableOpacity>
       </View>
     </View>
   );

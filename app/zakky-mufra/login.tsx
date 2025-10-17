@@ -1,17 +1,35 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert, } from "react-native";
-import { useRouter } from "expo-router"; // ⬅️ tambahkan ini
+import { useRouter } from "expo-router";
+import { useDispatch } from "react-redux"; // ⬅️ Tambah Redux
+import { setUsers } from '../../store/reducer/userSlice';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter(); // ⬅️ untuk navigasi
+  const router = useRouter();
+  const dispatch = useDispatch(); // ⬅️ untuk mengirim data ke Redux
 
-  const handleLogin = () => {
-    if (email === "" || password === "") {
+  // ✅ Fungsi utama login
+  const onSubmitLogin = () => {
+    if (email === "zakky@mail.com" && password === "tes123") {
+      // Simpan data user ke Redux
+      dispatch(
+        setUsers({
+          name: "M. Zakky Almufra",
+          email: "zakky@mail.com",
+          gender: "Pria",
+          dateOfBirth: "01-01-2000",
+          address: "Jl. Contoh No. 123, Bandung",
+        })
+      );
+
+      // Navigasi ke halaman home setelah sukses
+      router.replace("/zakky-mufra/home");
+    } else if (email === "" || password === "") {
       Alert.alert("Login Failed", "Please enter your email and password");
     } else {
-      Alert.alert("Login Success", `Welcome back, ${email}!`);
+      Alert.alert("Login Failed", "Invalid email or password");
     }
   };
 
@@ -51,19 +69,8 @@ export default function LoginScreen() {
         />
       </View>
 
-      {/* Remember + Forget */}
-      <View style={styles.row}>
-        <View style={styles.checkboxWrapper}>
-          <View style={styles.checkbox} />
-          <Text style={styles.rememberText}>Remember me</Text>
-        </View>
-        <TouchableOpacity>
-          <Text style={styles.forgetText}>Forget password ?</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Tombol Next */}
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      {/* Tombol Login */}
+      <TouchableOpacity style={styles.button} onPress={onSubmitLogin}>
         <Text style={styles.buttonText}>Next ➜</Text>
       </TouchableOpacity>
 
@@ -71,7 +78,7 @@ export default function LoginScreen() {
       <View style={styles.registerWrapper}>
         <Text style={styles.normalText}>New Member? </Text>
         <TouchableOpacity
-          onPress={() => router.push("/zakky-mufra/register")} // ⬅️ arahkan ke file register
+          onPress={() => router.push("/zakky-mufra/register")}
         >
           <Text style={styles.registerText}>Register now</Text>
         </TouchableOpacity>
