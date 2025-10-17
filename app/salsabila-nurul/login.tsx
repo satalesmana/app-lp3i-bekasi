@@ -1,13 +1,27 @@
 import {useState} from "react";
-import {Alert, Image, Pressable, StyleSheet, Text, TextInput, Button , View} from "react-native";
+import {Alert, Image, StyleSheet, Text, TextInput, View} from "react-native";
 import {router} from "expo-router";
 import {ButtonWarning} from "@/componets/myButton";
+import { useDispatch } from 'react-redux';
+import { setUsers } from '../../store/reducer/userSlice';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
   const onSubmitLogin = () => {
+    if(email==='salsabila@gmail.com' && password === 'salsa123'){
+      dispatch(setUsers({
+        name: "Salsabila Nurul Hikmah",
+        email: "salsabila@gmail.com",
+        gender: "Wanita",
+        dateOfBirth: "27-09-2005",
+        address: "Ds.Tridaya Sakti"
+      }))
+      router.replace("/salsabila-nurul/home")
+      return;
+    }
     Alert.alert('Info', 'Login Gagal', [
       {text: 'OK', onPress: () => console.log('OK Pressed')},
     ]);
@@ -49,7 +63,7 @@ export default function LoginScreen() {
       {/* --- Login Button --- */}
       <ButtonWarning
         label="Login"
-        onPress={()=>{router.push('/salsabila-nurul/register')}}
+        onPress={onSubmitLogin}
         />
 
       {/* --- Divider --- */}
