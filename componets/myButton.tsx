@@ -30,10 +30,29 @@ export const ButtonCreate = (props: Props) => {
   );
 };
 
+export const ButtonSuccess = (props: Props) => {
+  return (
+    <TouchableOpacity style={styles.btnSuccess} onPress={props.onPress}>
+      <Text style={styles.btnLabel}>{props.label}</Text>
+    </TouchableOpacity>
+  );
+};
+
 const styles = StyleSheet.create({
   btnPrimary: {
     marginTop: 10,
     backgroundColor: "#FF3951",
+    height: 50,
+    borderRadius: 10,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    gap: 15,
+  },
+  btnSuccess: {
+    marginTop: 10,
+    backgroundColor: "#4aff39ff",
     height: 50,
     borderRadius: 10,
     display: "flex",

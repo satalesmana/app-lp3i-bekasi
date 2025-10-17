@@ -19,14 +19,20 @@ export default function homeScreen() {
         />
 
         <ButtonPrimary
-          label="Next"
-          onPress={()=>{}}
+          onPress={()=> router.push("/gema_satya_nugroho")}
+          label="Halaman Gema"
+        />
+
+        <ButtonPrimary  
+          label="Increment"
+          onPress={() => dispatch(increment())}
           />
 
         <ButtonSecondary
-          label="Selanjutnya"
-          onPress={()=>{}}
+          label="Increment"
+          onPress={() => dispatch(decrement())}
           />
+          <Text>{count}</Text>
     </View>
   );
 }
