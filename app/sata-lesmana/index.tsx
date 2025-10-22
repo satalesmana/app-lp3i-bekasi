@@ -1,14 +1,31 @@
-import { router } from "expo-router";
-import { Button, Text, View } from "react-native";
+import { router } from 'expo-router';
+import { useEffect } from "react";
+import { Image, StyleSheet, View } from "react-native";
 
-export default function SataLesmanaIndex() {
+export default function Index() {
+  const splashTimer = () => {
+    setTimeout(() => {
+      router.replace("/sata-lesmana/login")
+    }, 3000)
+  }
+
+  useEffect(() => {
+    splashTimer()
+  })
+
   return (
-    <View>
-        <Text>ini halaman sata</Text>
-        <Button 
-          title="login page"
-          onPress={()=>{router.push('/sata-lesmana/login')}}/>
-          
+    <View style={styles.container}>
+      <Image 
+        source={require('../../assets/images/logo-app.png')} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#0D2063"
+  }
+});

@@ -19,7 +19,7 @@ export default function LoginScreen(){
                 dateOfBirth: "01-01-1001",
                 address: "Jl. Demo tes"
             }))
-            router.replace("/sata-lesmana/home")
+            router.replace("/sata-lesmana/(main)")
             return;
         }
         Alert.alert('Info', 'Login Gagal', [
