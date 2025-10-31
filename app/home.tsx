@@ -18,6 +18,12 @@ export default function homeScreen() {
           color="#841584"
         />
 
+        <Button
+          onPress={()=> router.push("/zakky-mufra")}
+          title="UTS - Zakky Mufra"
+          color="#841584"
+        />
+
         <ButtonPrimary
           label="Increment"
           onPress={() => dispatch(increment())}
