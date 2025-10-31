@@ -11,7 +11,7 @@ export default function homeScreen() {
 
   return (
     <View style={{padding: 15}}>
-        <Text>INI HALAMAN HOME</Text>
+        <Text>ini halaman home</Text>
         <Button
           onPress={()=> router.push("/sata-lesmana")}
           title="Learn More"
