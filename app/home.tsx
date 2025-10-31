@@ -1,4 +1,4 @@
-import { ButtonPrimary, ButtonSecondary } from "@/componets/myButton";
+import { ButtonPrimary, ButtonSecondary, ButtonUTS } from "@/componets/myButton";
 import { router } from "expo-router";
 import { Button, Text, View } from "react-native";
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,6 +26,11 @@ export default function homeScreen() {
         <ButtonSecondary
           label="Decrement"
           onPress={() => dispatch(decrement())}
+          />
+
+          <ButtonUTS
+          label="Halaman Hafiizh"
+          onPress={()=> router.push("/hafiizh")}
           />
     </View>
   );
