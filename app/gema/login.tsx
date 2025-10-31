@@ -11,13 +11,13 @@ export default function LoginScreen(){
     const dispatch = useDispatch();
 
     const onSubmitLogin = ()=>{
-        if(email==='sata@mail.com' && password === 'tes123'){
+        if(email==='gema@mail.com' && password === 'tes123'){
             dispatch(setUsers({
-                name: "Sata Lesmana",
-                email: "sata@mail.com",
+                name: "Gema Satya Nugroho",
+                email: "gema@mail.com",
                 gender: "Pria",
-                dateOfBirth: "01-01-1001",
-                address: "Jl. Demo tes"
+                dateOfBirth: "28-01-2005",
+                address: "Taman Alamanada"
             }))
             router.replace("/gema/(main)")
             return;
