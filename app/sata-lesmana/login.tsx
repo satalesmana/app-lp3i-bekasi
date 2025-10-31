@@ -9,6 +9,7 @@ export default function LoginScreen() {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
+<<<<<<< HEAD
   const onSubmitLogin = () => {
     if (email === 'sata@mail.com' && password === 'tes123') {
       dispatch(
@@ -22,6 +23,28 @@ export default function LoginScreen() {
       );
       router.replace('/sata-lesmana/home');
       return;
+=======
+export default function LoginScreen(){
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
+
+    const onSubmitLogin = ()=>{
+        if(email==='sata@mail.com' && password === 'tes123'){
+            dispatch(setUsers({
+                name: "Sata Lesmana",
+                email: "sata@mail.com",
+                gender: "Pria",
+                dateOfBirth: "01-01-1001",
+                address: "Jl. Demo tes"
+            }))
+            router.replace("/sata-lesmana/(main)")
+            return;
+        }
+        Alert.alert('Info', 'Login Gagal', [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ]);
+>>>>>>> 80f1444417fb11c4b07026e112705dc763de75d3
     }
     Alert.alert('Info', 'Login Gagal', [{ text: 'OK', onPress: () => console.log('OK Pressed') }]);
   };
