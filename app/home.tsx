@@ -6,7 +6,7 @@ import { decrement, increment } from '../store/reducer/counterSlice';
 
 
 export default function homeScreen() {
-  const count = useSelector(state => state.counter.value)
+  const count = useSelector((state:any) => state.counter.value)
   const dispatch = useDispatch()
 
   return (
@@ -17,6 +17,10 @@ export default function homeScreen() {
           title="Learn More"
           color="#841584"
         />
+       <ButtonSecondary
+          label="UTS FATIMAH"
+          onPress={()=> router.replace("/uts-FatimahAzzahra")}
+          />
 
         <ButtonPrimary
           label="Increment"
