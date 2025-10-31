@@ -11,10 +11,10 @@ export default function LoginScreen(){
     const dispatch = useDispatch();
 
     const onSubmitLogin = ()=>{
-        if(email==='sata@mail.com' && password === 'tes123'){
+        if(email==='hendra@gmail.com' && password === 'tes123'){
             dispatch(setUsers({
-                name: "Sata Lesmana",
-                email: "sata@mail.com",
+                name: "HendrawanJyd",
+                email: "hendra@gmmail.com",
                 gender: "Pria",
                 dateOfBirth: "01-01-1001",
                 address: "Jl. Demo tes"
