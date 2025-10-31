@@ -11,7 +11,7 @@ export default function homeScreen() {
 
   return (
     <View style={{padding: 15}}>
-        <Text>ini halaman home</Text>
+        <Text>INI HALAMAN HOME</Text>
         <Button
           onPress={()=> router.push("/sata-lesmana")}
           title="Learn More"
@@ -27,8 +27,6 @@ export default function homeScreen() {
           label="Decrement"
           onPress={() => dispatch(decrement())}
           />
-
-        <Text>{count}</Text>
     </View>
   );
 }
