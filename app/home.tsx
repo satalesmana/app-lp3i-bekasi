@@ -13,7 +13,7 @@ export default function homeScreen() {
     <View style={{padding: 15}}>
         <Text>ini halaman home</Text>
         <Button
-          onPress={()=> router.push("/sata-lesmana")}
+          onPress={()=> router.push("/syuby-attala")}
           title="Learn More"
           color="#841584"
         />

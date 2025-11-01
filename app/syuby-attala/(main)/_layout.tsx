@@ -12,9 +12,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="(account)/index"
+        name="(account)" // <-- PERBAIKAN 1: Hapus "/index"
         options={{
           title: 'Account',
+          headerShown: false, // <-- PERBAIKAN 2: Sembunyikan header dari Tabs
           tabBarIcon: ({ color }) => <Ionicons size={28} name="person-outline" color={color} />,
         }}
       />

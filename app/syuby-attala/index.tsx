@@ -5,7 +5,7 @@ import { Image, StyleSheet, View } from "react-native";
 export default function Index() {
   const splashTimer = () => {
     setTimeout(() => {
-      router.replace("/sata-lesmana/login")
+      router.replace("/syuby-attala/login")
     }, 3000)
   }
 

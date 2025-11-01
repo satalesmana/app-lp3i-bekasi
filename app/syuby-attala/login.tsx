@@ -11,15 +11,15 @@ export default function LoginScreen(){
     const dispatch = useDispatch();
 
     const onSubmitLogin = ()=>{
-        if(email==='sata@mail.com' && password === 'tes123'){
+        if(email==='syuby@mail.com' && password === 'syuby123'){
             dispatch(setUsers({
-                name: "Sata Lesmana",
-                email: "sata@mail.com",
+                name: "Syuby Alwi Akbar Attala",
+                email: "syuby@mail.com",
                 gender: "Pria",
-                dateOfBirth: "01-01-1001",
-                address: "Jl. Demo tes"
+                dateOfBirth: "08-08-2005",
+                address: "Jl. Angkasa"
             }))
-            router.replace("/sata-lesmana/(main)")
+            router.replace("/syuby-attala/(main)")
             return;
         }
         Alert.alert('Info', 'Login Gagal', [
