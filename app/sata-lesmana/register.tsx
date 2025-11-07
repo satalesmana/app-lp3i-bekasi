@@ -5,6 +5,7 @@ import { supabase } from '../../lib/supabase'
 export default function RegisterScreen() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [fullName, setFullName] = useState('')
   const [loading, setLoading] = useState(false)
 
   async function signUpWithEmail() {
@@ -15,12 +16,20 @@ export default function RegisterScreen() {
     } = await supabase.auth.signUp({
       email: email.trim(),
       password: password,
+      phone: '',
+      options: {
+        data:{
+            full_name: fullName,
+        }
+      }
+
     })
 
-    console.log('email', email)
-    console.log('error', error)
-
-    if (error) Alert.alert(error.message)
+    if (error){
+        Alert.alert(error.message)
+        return;
+    }
+    
     if (!session) Alert.alert('Please check your inbox for email verification!')
     setLoading(false)
   }
