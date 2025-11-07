@@ -1,5 +1,6 @@
 import { MessageItem } from "@/componets/module/message/CardMessage";
-import { useState } from "react";
+import { Session } from '@supabase/supabase-js';
+import { useEffect, useState } from "react";
 import {
   Button,
   FlatList,
@@ -9,6 +10,7 @@ import {
   TextInput,
   View
 } from "react-native";
+import { supabase } from '../../../lib/supabase';
 
 const messages=[
   {id:1, user_id:1, email:"tes@mail.com", message:"hello tes", created_at:new Date()},
@@ -18,6 +20,22 @@ const messages=[
 
 export default function MainScreen() {
   const [input,setInput] = useState("");
+  const [session, setSession] = useState<Session | null>(null)
+  const [userId, setUserId]= useState<any>(null)
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+
+    if(session && session.user){
+      setUserId(session.user.id)
+    }
+          
+  }, [])
+
   const sendMessage=()=>{}
   
   return (
@@ -30,7 +48,7 @@ export default function MainScreen() {
                     data={messages}
                     keyExtractor={(item) => item.id.toString()}
                     inverted
-                    renderItem={({item}) => <MessageItem item={item} />}
+                    renderItem={({item}) => <MessageItem item={item} session={userId}/>}
                     contentContainerStyle={{ paddingVertical: 10 }}
                 />
 

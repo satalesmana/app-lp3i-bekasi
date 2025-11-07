@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
 import { Text, View } from "react-native";
 
-export const MessageItem = ({ item }:any) => {
-        const isMe = item.user_id === 1;
+export const MessageItem = ({ item, session}:any) => {
+        const isMe = item.user_id === session;
         return (
             <View
                 style={{
