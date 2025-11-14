@@ -10,6 +10,7 @@ export const MessageItem = ({ item, session}:any) => {
                     backgroundColor: isMe ? "#DCF8C6" : "#ECECEC",
                     marginVertical: 4,
                     padding: 10,
+                    margin: 10,
                     borderRadius: 12,
                     maxWidth: "75%",
                 }}
