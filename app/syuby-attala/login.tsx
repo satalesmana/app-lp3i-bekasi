@@ -26,7 +26,7 @@ export default function LoginScreen(){
             email: data.user?.email,
         }))
 
-        router.replace("/sata-lesmana/(main)")
+        router.replace("/syuby-attala/(main)")
     }
 
     return(
@@ -69,7 +69,7 @@ export default function LoginScreen(){
             </View>
 
             <Text style={{marginTop:20, textAlign:'center'}}>Don’t have an account ?</Text>
-            <Button title="Register" onPress={()=> router.push('/sata-lesmana/register')} />
+            <Button title="Register" onPress={()=> router.push('./syuby-attala/register')} />
         </View>
     )
 }
