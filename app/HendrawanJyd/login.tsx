@@ -3,28 +3,29 @@ import { useState } from "react";
 import { Alert, Image, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useDispatch } from 'react-redux';
 import { setUsers } from '../../store/reducer/userSlice';
-
+import { supabase } from '../../lib/supabase';
 
 export default function LoginScreen(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
 
-    const onSubmitLogin = ()=>{
-        if(email==='hendra@gmail.com' && password === 'tes123'){
-            dispatch(setUsers({
-                name: "HendrawanJyd",
-                email: "hendra@gmmail.com",
-                gender: "Pria",
-                dateOfBirth: "01-01-1001",
-                address: "Jl. Demo tes"
-            }))
-            router.replace("/HendrawanJyd/(main)")
-            return;
-        }
-        Alert.alert('Info', 'Login Gagal', [
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ]);
+    const onSubmitLogin = async()=>{
+         const { error, data } = await supabase.auth.signInWithPassword({
+                    email: email.trim(),
+                    password: password,
+                })
+        
+                if (error){
+                    Alert.alert(error.message)
+                    return;
+                } 
+                
+                dispatch(setUsers({
+                    email: data.user?.email,
+                }))
+        
+                router.replace("/HendrawanJyd/(main)")
     }
 
     return(
@@ -66,7 +67,7 @@ export default function LoginScreen(){
                  <Image style={style.imageLoagin} source={require('@/assets/images/logo-app.png')} />
             </View>
 
-            <Text style={{marginTop:20, textAlign:'center'}}>Don’t have an account ? Sign Up</Text>
+            <Text style={{marginTop:20, textAlign:'center'}}>Don’t have an account ?<Text onPress={() => router.push('/HendrawanJyd/register')}>Sign Up</Text></Text>
         </View>
     )
 }

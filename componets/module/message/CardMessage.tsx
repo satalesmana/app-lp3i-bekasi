@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
 import { Text, View } from "react-native";
 
-export const MessageItem = ({ item }:any) => {
-        const isMe = item.user_id === 1;
+export const MessageItem = ({ item, session}:any) => {
+        const isMe = item.user_id === session;
         return (
             <View
                 style={{
@@ -10,6 +10,7 @@ export const MessageItem = ({ item }:any) => {
                     backgroundColor: isMe ? "#DCF8C6" : "#ECECEC",
                     marginVertical: 4,
                     padding: 10,
+                    margin: 10,
                     borderRadius: 12,
                     maxWidth: "75%",
                 }}
