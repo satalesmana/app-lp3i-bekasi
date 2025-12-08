@@ -1,7 +1,7 @@
+import { ImmagePicker } from "@/componets/ImgPicker";
 import { ButtonPrimary } from "@/componets/myButton";
 import { router } from "expo-router";
 import { SafeAreaView, StyleSheet, Text, TextInput } from "react-native";
-
 export default function PostFormPage() {
     const onSave=()=>{
         router.back()
@@ -16,6 +16,7 @@ export default function PostFormPage() {
                 multiline
                 numberOfLines={4}
                 maxLength={40}/>
+            <ImmagePicker label="Select Image" />
             <ButtonPrimary onPress={onSave} label="Save data" />
         </SafeAreaView>
     )
