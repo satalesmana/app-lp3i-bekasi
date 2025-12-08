@@ -1,7 +1,8 @@
 import { router } from "expo-router";
 import { useState } from "react";
-import { Alert, Image, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, Button, Image, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useDispatch } from 'react-redux';
+import { supabase } from '../../lib/supabase';
 import { setUsers } from '../../store/reducer/userSlice';
 
 
@@ -10,21 +11,22 @@ export default function LoginScreen(){
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
 
-    const onSubmitLogin = ()=>{
-        if(email==='hafiizh@mail.com' && password === '123'){
-            dispatch(setUsers({
-                name: "Muhammad Hafiizh Alfath",
-                email: "Hafiizh@mail.com",
-                gender: "Pria",
-                dateOfBirth: "12-12-2004",
-                address: "Jl. Perjuangan Bekasi"
-            }))
-            router.replace("/hafiizh/(main)")
+    const onSubmitLogin = async ()=>{
+        const { error, data } = await supabase.auth.signInWithPassword({
+            email: email.trim(),
+            password: password,
+        })
+
+        if (error){
+            Alert.alert(error.message)
             return;
-        }
-        Alert.alert('Info', 'Login Gagal', [
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ]);
+        } 
+        
+        dispatch(setUsers({
+            email: data.user?.email,
+        }))
+
+        router.replace("/hafiizh/(main)")
     }
 
     return(
@@ -66,7 +68,8 @@ export default function LoginScreen(){
                  <Image style={style.imageLoagin} source={require('@/assets/images/logo-app.png')} />
             </View>
 
-            <Text style={{marginTop:20, textAlign:'center'}}>Don’t have an account ? Sign Up</Text>
+            <Text style={{marginTop:20, textAlign:'center'}}>Don’t have an account ?</Text>
+            <Button title="Register" onPress={()=> router.push('/sata-lesmana/register')} />
         </View>
     )
 }
