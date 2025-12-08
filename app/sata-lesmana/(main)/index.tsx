@@ -37,7 +37,7 @@ export default function MainScreen() {
     }
 
     onLoadData()
-  }, [])
+  }, [session])
 
   const getSession=()=>{
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -50,18 +50,16 @@ export default function MainScreen() {
     if(session && session.user){
       setUserId(session.user.id)
     }
+    onLoadData()
   }
   
   const onLoadData=async()=>{
-    console.log('asdfddd')
     await dispatch(fetchMesage() as any) 
   }
 
   const sendMessage=async()=>{
     try{
-      console.log('asdf')
       if (!session || !session.user || !userId) return;
-       console.log('asdf')
       const payload= {userId, message:input, email: session.user.email}
       await dispatch(postMesage(payload as any) as any)
       await onLoadData()
@@ -118,7 +116,7 @@ export default function MainScreen() {
                       }}
                   />
                   <Button title="Send" onPress={sendMessage} />
-                  <Button title="session" onPress={getSession} />
+                  {/* <Button title="session" onPress={getSession} /> */}
               </View>
             </SafeAreaView>
         </KeyboardAvoidingView>
