@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
+  Text,
   TextInput,
   View
 } from "react-native";
@@ -18,6 +19,7 @@ import { fetchMesage, postMesage } from "../../../store/reducer/messageSlice";
 export default function MainScreen() {
   const dispatch = useDispatch();
   const messageStore = useSelector((state) => state.message);
+  const loadingStore = useSelector((state) => state.loading);
 
   const [input,setInput] = useState("");
   const [session, setSession] = useState<Session | null>(null)
@@ -37,14 +39,29 @@ export default function MainScreen() {
     onLoadData()
   }, [])
 
+  const getSession=()=>{
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+
+    if(session && session.user){
+      setUserId(session.user.id)
+    }
+  }
   
   const onLoadData=async()=>{
-    await dispatch(fetchMesage() as any)
+    console.log('asdfddd')
+    await dispatch(fetchMesage() as any) 
   }
 
   const sendMessage=async()=>{
     try{
+      console.log('asdf')
       if (!session || !session.user || !userId) return;
+       console.log('asdf')
       const payload= {userId, message:input, email: session.user.email}
       await dispatch(postMesage(payload as any) as any)
       await onLoadData()
@@ -68,8 +85,15 @@ export default function MainScreen() {
                   inverted
                   renderItem={({item}) => <MessageItem item={item} session={userId}/>}
                   contentContainerStyle={{ paddingVertical: 10 }}
+                  // refreshControl={
+                  //   <RefreshControl
+                  //     refreshing={loadingStore}
+                  //     onRefresh={onLoadData}
+                  //     enabled={true} // Ensure RefreshControl is enabled
+                  //   />
+                  // }
               />
-
+            
               <View style={{
                 flexDirection: 'row',
                 alignItems: 'center',
@@ -78,6 +102,7 @@ export default function MainScreen() {
                 borderTopColor: '#e5e5e5',
                 padding: 8
               }}>
+                <Text>{loadingStore}</Text>
                   <TextInput
                       value={input}
                       onChangeText={setInput}
@@ -93,6 +118,7 @@ export default function MainScreen() {
                       }}
                   />
                   <Button title="Send" onPress={sendMessage} />
+                  <Button title="session" onPress={getSession} />
               </View>
             </SafeAreaView>
         </KeyboardAvoidingView>
