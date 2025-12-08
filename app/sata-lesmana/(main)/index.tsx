@@ -18,8 +18,8 @@ import { fetchMesage, postMesage } from "../../../store/reducer/messageSlice";
 
 export default function MainScreen() {
   const dispatch = useDispatch();
-  const messageStore = useSelector((state) => state.message);
-  const loadingStore = useSelector((state) => state.loading);
+  const messageStore = useSelector((state:any ) => state.message);
+  const loadingStore = useSelector((state:any ) => state.loading);
 
   const [input,setInput] = useState("");
   const [session, setSession] = useState<Session | null>(null)
@@ -37,7 +37,7 @@ export default function MainScreen() {
     }
 
     onLoadData()
-  }, [])
+  }, [session])
 
   const getSession=()=>{
     supabase.auth.getSession().then(({ data: { session } }) => {
