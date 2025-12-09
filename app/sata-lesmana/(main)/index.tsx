@@ -24,19 +24,9 @@ export default function MainScreen() {
   const [input,setInput] = useState("");
   const [session, setSession] = useState<Session | null>(null)
   const [userId, setUserId]= useState<any>(null)
+  
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-    })
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-
-    if(session && session.user){
-      setUserId(session.user.id)
-    }
-
-    onLoadData()
+    getSession()
   }, [session])
 
   const getSession=()=>{
@@ -49,8 +39,8 @@ export default function MainScreen() {
 
     if(session && session.user){
       setUserId(session.user.id)
+      onLoadData()
     }
-    onLoadData()
   }
   
   const onLoadData=async()=>{
