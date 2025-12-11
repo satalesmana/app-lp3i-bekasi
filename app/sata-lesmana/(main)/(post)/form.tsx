@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { SafeAreaView, StyleSheet, Text, TextInput } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { supabase } from '../../../../lib/supabase';
-import { addNewPost, setCreatedBy, setPost } from "../../../../store/reducer/newPostSlice";
+import { addNewPost, setCreatedBy, setImage, setPost } from "../../../../store/reducer/newPostSlice";
 
 export default function PostFormPage() {
     const [session, setSession] = useState<Session | null>(null)
@@ -24,11 +24,15 @@ export default function PostFormPage() {
             email: session?.user.email,
             name: name[0]
         }))
+        console.log('submiting data=>', formInput)
         await dispatch(addNewPost(formInput as any) as any)
         dispatch(setPost(null))
         router.back()
     }
-
+    const onSuccesupload=(val:string)=>{
+        console.log('onSuccesupload=>',val)
+        dispatch(setImage(val))
+    }
     const getSession=()=>{
         supabase.auth.getSession().then(({ data: { session } }) => {
           setSession(session)
@@ -49,7 +53,9 @@ export default function PostFormPage() {
                 multiline
                 numberOfLines={4}
                 maxLength={40}/>
-            <ImmagePicker label="Select Image" />
+            <ImmagePicker
+                onSuccesUpload={(val)=>onSuccesupload(val)}
+                label="Select Image" />
             <ButtonPrimary onPress={onSave} label="Save data" />
         </SafeAreaView>
     )
