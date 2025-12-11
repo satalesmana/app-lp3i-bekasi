@@ -1,13 +1,13 @@
+import { uploadImage } from '@/lib/supabase';
 import * as ImagePicker from 'expo-image-picker';
-import { useState } from "react";
+import { useState } from 'react';
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
 interface Props {
     label?: string
 }
 
 export const ImmagePicker =(props:Props)=>{
-    const [image, setImage] = useState<string | null>(null);
+    const [imageUrl, setImageUrl] = useState<string | null>(null);
 
     const pickImage = async () => {
         // No permissions request is necessary for launching the image library.
@@ -18,8 +18,8 @@ export const ImmagePicker =(props:Props)=>{
         const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
         if (!permissionResult.granted) {
-        Alert.alert('Permission required', 'Permission to access the media library is required.');
-        return;
+            Alert.alert('Permission required', 'Permission to access the media library is required.');
+            return;
         }
 
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -27,12 +27,17 @@ export const ImmagePicker =(props:Props)=>{
             allowsEditing: true,
             aspect: [4, 3],
             quality: 1,
+            base64: true,
         });
 
-        console.log(result);
-
         if (!result.canceled) {
-            setImage(result.assets[0].uri);
+            const res = await uploadImage(
+                result.assets[0].base64 as string, 
+                result.assets[0].fileName as string
+            )
+            
+            if(res?.fullPath)
+                setImageUrl(`https://isibdtuopxlgxxkldvhy.supabase.co/storage/v1/object/public/${res?.fullPath}`)
         }
     };
 
@@ -41,7 +46,7 @@ export const ImmagePicker =(props:Props)=>{
             <TouchableOpacity style={styles.btnSecondary} onPress={pickImage}>
                 <Text style={styles.btnLabel}>{props.label}</Text>
             </TouchableOpacity>
-            {image && <Image source={{ uri: image }} style={styles.image} />}
+            {imageUrl && <Image source={{ uri: imageUrl }} style={styles.image} />}
         </View>
     )
 }
