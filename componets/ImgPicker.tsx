@@ -3,11 +3,13 @@ import * as ImagePicker from 'expo-image-picker';
 import { useState } from 'react';
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 interface Props {
-  label?: string;
+    label?: string
+    onSuccesUpload:(uri:string) => void,
 }
 
-export const ImmagePicker = (props: Props) => {
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+export const ImmagePicker =(props:Props)=>{
+    const [imageUrl, setImageUrl] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library.
@@ -30,22 +32,31 @@ export const ImmagePicker = (props: Props) => {
       base64: true,
     });
 
-    if (!result.canceled) {
-      const res = await uploadImage(result.assets[0].base64 as string, result.assets[0].fileName as string);
+        if (!result.canceled) {
+            setIsLoading(true)
+            const res = await uploadImage(
+                result.assets[0].base64 as string, 
+                result.assets[0].fileName as string
+            )
+            
+            if(res?.fullPath){
+                setImageUrl(`https://isibdtuopxlgxxkldvhy.supabase.co/storage/v1/object/public/${res?.fullPath}`)
+                props.onSuccesUpload(`https://isibdtuopxlgxxkldvhy.supabase.co/storage/v1/object/public/${res?.fullPath}`)
+            }
+            setIsLoading(false)
+        }
+    };
 
-      if (res?.fullPath) setImageUrl(`https://pakhxaoxirlkxtwgxdjm.storage.supabase.co/storage/v1/object/public/${res?.fullPath}`);
-    }
-  };
-
-  return (
-    <View>
-      <TouchableOpacity style={styles.btnSecondary} onPress={pickImage}>
-        <Text style={styles.btnLabel}>{props.label}</Text>
-      </TouchableOpacity>
-      {imageUrl && <Image source={{ uri: imageUrl }} style={styles.image} />}
-    </View>
-  );
-};
+    return(
+        <View>
+            <TouchableOpacity style={styles.btnSecondary} onPress={pickImage}>
+                {isLoading && <Text style={styles.btnLabel}>Loading...</Text>}
+                {!isLoading && <Text style={styles.btnLabel}>{props.label}</Text>}
+            </TouchableOpacity>
+            {imageUrl && <Image source={{ uri: imageUrl }} style={styles.image} />}
+        </View>
+    )
+}
 
 const styles = StyleSheet.create({
   container: {

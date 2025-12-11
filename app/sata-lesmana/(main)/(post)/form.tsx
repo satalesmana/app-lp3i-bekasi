@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, TextInput } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { supabase } from '../../../../lib/supabase';
-import { addNewPost, setCreatedBy, setPost } from '../../../../store/reducer/newPostSlice';
+import { addNewPost, setCreatedBy, setImage, setPost } from "../../../../store/reducer/newPostSlice";
 
 export default function PostFormPage() {
   const [session, setSession] = useState<Session | null>(null);
@@ -20,34 +20,45 @@ export default function PostFormPage() {
   const onSave = async () => {
     const name = session?.user.email?.split('@') || ['guest'];
 
-    dispatch(
-      setCreatedBy({
-        email: session?.user.email,
-        name: name[0],
-      })
-    );
-    await dispatch(addNewPost(formInput as any) as any);
-    dispatch(setPost(null));
-    router.back();
-  };
+        dispatch(setCreatedBy({
+            email: session?.user.email,
+            name: name[0]
+        }))
+        console.log('submiting data=>', formInput)
+        await dispatch(addNewPost(formInput as any) as any)
+        dispatch(setPost(null))
+        router.back()
+    }
+    const onSuccesupload=(val:string)=>{
+        console.log('onSuccesupload=>',val)
+        dispatch(setImage(val))
+    }
+    const getSession=()=>{
+        supabase.auth.getSession().then(({ data: { session } }) => {
+          setSession(session)
+        })
+        supabase.auth.onAuthStateChange((_event, session) => {
+          setSession(session)
+        }) 
+    }
 
-  const getSession = () => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-  };
-
-  return (
-    <SafeAreaView style={style.container}>
-      <Text>Post Message</Text>
-      <TextInput value={formInput.post} onChangeText={(val) => dispatch(setPost(val))} style={style.textInput} editable multiline numberOfLines={4} maxLength={40} />
-      <ImmagePicker label="Select Image" />
-      <ButtonPrimary onPress={onSave} label="Save data" />
-    </SafeAreaView>
-  );
+    return(
+        <SafeAreaView style={style.container}>
+            <Text>Post Message</Text>
+            <TextInput 
+                value={formInput.post}
+                onChangeText={(val)=> dispatch(setPost(val))}
+                style={style.textInput}
+                editable
+                multiline
+                numberOfLines={4}
+                maxLength={40}/>
+            <ImmagePicker
+                onSuccesUpload={(val)=>onSuccesupload(val)}
+                label="Select Image" />
+            <ButtonPrimary onPress={onSave} label="Save data" />
+        </SafeAreaView>
+    )
 }
 
 const style = StyleSheet.create({
