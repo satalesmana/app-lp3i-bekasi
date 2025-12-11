@@ -1,21 +1,55 @@
+import { ImmagePicker } from "@/componets/ImgPicker";
 import { ButtonPrimary } from "@/componets/myButton";
+import { Session } from '@supabase/supabase-js';
 import { router } from "expo-router";
+import { useEffect, useState } from "react";
 import { SafeAreaView, StyleSheet, Text, TextInput } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { supabase } from '../../../../lib/supabase';
+import { addNewPost, setCreatedBy, setPost } from "../../../../store/reducer/newPostSlice";
 
 export default function PostFormPage() {
-    const onSave=()=>{
+    const [session, setSession] = useState<Session | null>(null)
+    const dispatch = useDispatch();
+    const formInput = useSelector((state) => state.post.formInput);
+    
+    useEffect(() => {
+        getSession()
+    }, [session])
+
+    const onSave=async ()=>{
+        const name = session?.user.email?.split('@') || ['guest']
+
+        dispatch(setCreatedBy({
+            email: session?.user.email,
+            name: name[0]
+        }))
+        await dispatch(addNewPost(formInput as any) as any)
+        dispatch(setPost(null))
         router.back()
+    }
+
+    const getSession=()=>{
+        supabase.auth.getSession().then(({ data: { session } }) => {
+          setSession(session)
+        })
+        supabase.auth.onAuthStateChange((_event, session) => {
+          setSession(session)
+        }) 
     }
 
     return(
         <SafeAreaView style={style.container}>
             <Text>Post Message</Text>
             <TextInput 
+                value={formInput.post}
+                onChangeText={(val)=> dispatch(setPost(val))}
                 style={style.textInput}
                 editable
                 multiline
                 numberOfLines={4}
                 maxLength={40}/>
+            <ImmagePicker label="Select Image" />
             <ButtonPrimary onPress={onSave} label="Save data" />
         </SafeAreaView>
     )
