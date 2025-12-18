@@ -18,6 +18,12 @@ export default function HomeScreen() {
           color="#841584"
         />
 
+        <Button
+          onPress={()=> router.push("/Rheza")}
+          title="UAS RHEZA"
+          color="#841584"
+        />
+
         <ButtonPrimary
           label="Increment"
           onPress={() => dispatch(increment())}
