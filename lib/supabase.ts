@@ -30,3 +30,21 @@ if (Platform.OS !== "web") {
     }
   })
 }
+
+export const uploadImage = async (base64: string, fileName: string) => {
+  const binary = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0))
+  const { data, error } = await supabase.storage
+    .from('social-apps') // replace with your bucket name
+    .upload(`${fileName}`, binary, {
+      cacheControl: '3600',
+      upsert: false,
+      contentType: 'image/jpeg', // or detect dynamically
+    })
+
+  if (error) {
+    console.error('Upload error:', error)
+    return null
+  }
+
+  return data
+}

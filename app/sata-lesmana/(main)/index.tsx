@@ -24,19 +24,9 @@ export default function MainScreen() {
   const [input,setInput] = useState("");
   const [session, setSession] = useState<Session | null>(null)
   const [userId, setUserId]= useState<any>(null)
+  
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-    })
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-
-    if(session && session.user){
-      setUserId(session.user.id)
-    }
-
-    onLoadData()
+    getSession()
   }, [session])
 
   const getSession=()=>{
@@ -49,19 +39,17 @@ export default function MainScreen() {
 
     if(session && session.user){
       setUserId(session.user.id)
+      onLoadData()
     }
   }
   
   const onLoadData=async()=>{
-    console.log('asdfddd')
     await dispatch(fetchMesage() as any) 
   }
 
   const sendMessage=async()=>{
     try{
-      console.log('asdf')
       if (!session || !session.user || !userId) return;
-       console.log('asdf')
       const payload= {userId, message:input, email: session.user.email}
       await dispatch(postMesage(payload as any) as any)
       await onLoadData()
@@ -118,7 +106,7 @@ export default function MainScreen() {
                       }}
                   />
                   <Button title="Send" onPress={sendMessage} />
-                  <Button title="session" onPress={getSession} />
+                  {/* <Button title="session" onPress={getSession} /> */}
               </View>
             </SafeAreaView>
         </KeyboardAvoidingView>
