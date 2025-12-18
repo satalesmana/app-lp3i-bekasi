@@ -3,10 +3,10 @@ import { router } from "expo-router";
 import { Button, Text, View } from "react-native";
 import { useDispatch, useSelector } from 'react-redux';
 import { decrement, increment } from '../store/reducer/counterSlice';
+import React from 'react';
 
-
-export default function homeScreen() {
-  const count = useSelector(state => state.counter.value)
+export default function HomeScreen() {
+  const count = useSelector(state => (state as any).counter.value)
   const dispatch = useDispatch()
 
   return (
