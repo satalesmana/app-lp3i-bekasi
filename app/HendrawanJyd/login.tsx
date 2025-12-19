@@ -67,7 +67,13 @@ export default function LoginScreen(){
                  <Image style={style.imageLoagin} source={require('@/assets/images/logo-app.png')} />
             </View>
 
-            <Text style={{marginTop:20, textAlign:'center'}}>Don’t have an account ?<Text onPress={() => router.push('/HendrawanJyd/register')}>Sign Up</Text></Text>
+            <Text style={{marginTop:20, textAlign:'center'}}>Don’t have an account ?</Text>
+            <View style={{marginHorizontal:20, marginTop:8}}>
+            <Pressable onPress={() => router.push('/HendrawanJyd/register')}
+                        style={[style.btnLogin, {height: 40}]}>
+                <Text style={{color:'white', fontWeight:'600'}}>Register</Text>
+            </Pressable>
+            </View>
         </View>
     )
 }

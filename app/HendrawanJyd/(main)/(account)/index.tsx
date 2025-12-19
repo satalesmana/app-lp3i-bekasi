@@ -67,8 +67,6 @@ export default function HendrawanIndex() {
 
   // current text
   const t = translations[language];
-
-  // load saved language from AsyncStorage
   useEffect(() => {
     (async () => {
       try {
