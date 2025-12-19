@@ -48,7 +48,7 @@ export default function PostDetail() {
           />
         )}
 
-       <Text xt style={styles.timestamp}>{params.createdAt}</Text>
+       <Text style={styles.timestamp}>{params.createdAt}</Text>
 
         <View style={styles.stats}>
           <Text style={styles.statText}>
