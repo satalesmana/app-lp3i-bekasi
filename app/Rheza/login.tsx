@@ -26,7 +26,7 @@ export default function LoginScreen(){
             email: data.user?.email,
         }))
 
-        router.replace("/sata-lesmana/(main)")
+        router.replace("/Rheza/(main)")
     }
 
     return(
@@ -36,7 +36,7 @@ export default function LoginScreen(){
                 source={require('@/assets/images/logo-app.png')} />
             </View>
             <View style={[style.container, style.containerHeroText]}>
-                <Text style={style.welcomeText}>Welcome back!</Text>
+                <Text style={style.welcomeText}>Welcome back! R</Text>
                 <Text style={style.subText}>Login to your account</Text>
             </View>
 
@@ -69,7 +69,7 @@ export default function LoginScreen(){
             </View>
 
             <Text style={{marginTop:20, textAlign:'center'}}>Don’t have an account ?</Text>
-            <Button title="Register" onPress={()=> router.push('/sata-lesmana/register')} />
+            <Button title="Register" onPress={()=> router.push('/Rheza/register')} />
         </View>
     )
 }
