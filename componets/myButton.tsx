@@ -1,7 +1,9 @@
-import { Image, StyleSheet, Text, TouchableOpacity } from "react-native"
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+
 interface Props {
     onPress: () => void,
-    label: string
+    label?: string
 }
 
 export const ButtonPrimary =(props:Props)=>{
@@ -18,6 +20,14 @@ export const ButtonSecondary =(props:Props)=>{
         <TouchableOpacity style={styles.btnSecondary} onPress={props.onPress}>
           <Text style={styles.btnLabel}>{props.label}</Text>
           <Image source={require('../assets/images/chevron-right.png')} />
+        </TouchableOpacity>
+    )
+}
+
+export const FloatingButton =(props:Props)=>{
+    return(
+        <TouchableOpacity style={styles.floatingBtn} onPress={props.onPress}>
+          <Ionicons size={28} name="add" />
         </TouchableOpacity>
     )
 }
@@ -48,5 +58,16 @@ const styles = StyleSheet.create({
     btnLabel:{
         color:'#FCFCFC',
         fontSize:20
+    },
+    floatingBtn:{
+        position: "absolute",
+        bottom: 20,
+        right: 20,
+        backgroundColor: "#007AFF",
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        justifyContent: "center",
+        alignItems: "center",
     }
 })

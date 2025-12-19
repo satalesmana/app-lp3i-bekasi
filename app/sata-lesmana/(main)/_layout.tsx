@@ -5,6 +5,14 @@ export default function TabLayout() {
   return (
     <Tabs screenOptions={{ tabBarActiveTintColor: 'blue' }}>
       <Tabs.Screen
+        name="(post)"
+        options={{
+          title: 'Post',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <Ionicons size={28} name="home" color={color} />,
+        }}
+      />
+      <Tabs.Screen
         name="index"
         options={{
           title: 'Message',
