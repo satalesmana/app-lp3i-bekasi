@@ -13,8 +13,8 @@ export default function homeScreen() {
     <View style={{padding: 15}}>
         <Text>ini halaman home</Text>
         <Button
-          onPress={()=> router.push("/sata-lesmana")}
-          title="Learn More"
+          onPress={()=> router.push("/HendrawanAJyd")}
+          title="UAS_HendrawanAJyd"
           color="#841584"
         />
 
@@ -26,6 +26,12 @@ export default function homeScreen() {
         <ButtonSecondary
           label="Decrement"
           onPress={() => dispatch(decrement())}
+          />
+
+          <Button
+          onPress={()=> router.push("/sata-lesmana")}
+          title="Learn More"
+          color="#841584"
           />
 
         <Text>{count}</Text>
