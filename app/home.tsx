@@ -28,6 +28,11 @@ export default function homeScreen() {
           onPress={() => dispatch(decrement())}
           />
 
+        <Button
+          onPress={()=> router.push("/Hafiizh")}
+          title="Hafiizh"
+          color="#841584"
+        />
         <Text>{count}</Text>
     </View>
   );
