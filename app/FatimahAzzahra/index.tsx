@@ -16,7 +16,7 @@ export default function FatimahIndex() {
       <View>
         {/* Logo */}
         <Image
-          source={require("../../assets/images/fatimah/logo.png")}
+          source={require("../../assets/images/logo.png")}
           style={styles.image}
           resizeMode="contain"
         />
@@ -28,7 +28,7 @@ export default function FatimahIndex() {
         {/* Tombol Next */}
         <ButtonPurple
                  label="Next"
-                 onPress={()=> router.push("/fatimah-azzahra/login")}
+                 onPress={()=> router.push("/FatimahAzzahra/login")}
                  />
         {/* line */}
        <View style={styles.orContainer}>
@@ -41,7 +41,7 @@ export default function FatimahIndex() {
         <View style={styles.socialContainer}>
           <TouchableOpacity style={styles.socialButton}>
             <Image
-              source={require("../../assets/images/fatimah/github.png")}
+              source={require("../../assets/images/github.png")}
               style={styles.socialIcon}
             />
             <Text style={styles.socialText}>GitHub</Text>
@@ -49,7 +49,7 @@ export default function FatimahIndex() {
 
           <TouchableOpacity style={styles.socialButton}>
             <Image
-              source={require("../../assets/images/fatimah/gitlab.png")}
+              source={require("../../assets/images/gitlab.png")}
               style={styles.socialIcon}
             />
             <Text style={styles.socialText}>GitLab</Text>

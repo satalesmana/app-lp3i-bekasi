@@ -17,6 +17,11 @@ export default function homeScreen() {
           title="Learn More"
           color="#841584"
         />
+        <Button
+          onPress={()=> router.push("/FatimahAzzahra")}
+          title="Fatimah Azzahra"
+          color="#841584"
+        />
 
         <ButtonPrimary
           label="Increment"

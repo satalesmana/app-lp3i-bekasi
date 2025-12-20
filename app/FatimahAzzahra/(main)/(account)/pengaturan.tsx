@@ -19,7 +19,7 @@ export default function SettingsPage() {
           style: "destructive",
           onPress: () => {
             dispatch({ type: "LOGOUT" });
-            router.replace("/uts-FatimahAzzahra/login");
+            router.replace("/FatimahAzzahra/login");
           },
         },
       ]

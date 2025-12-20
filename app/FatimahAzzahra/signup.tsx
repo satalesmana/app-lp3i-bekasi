@@ -45,7 +45,7 @@ export default function SignUpScreen() {
     );
 
     setLoading(false);
-    router.push("/fatimah-azzahra/login");
+    router.push("/FatimahAzzahra/login");
   }
 
   return (
@@ -131,14 +131,14 @@ export default function SignUpScreen() {
       <View style={styles.socialRow}>
         <TouchableOpacity style={styles.socialBtn}>
           <Image
-            source={require("../../assets/images/fatimah/github.png")}
+            source={require("../../assets/images/github.png")}
             style={styles.socialIcon}
           />
           <Text style={styles.socialText}>GitHub</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.socialBtn}>
           <Image
-            source={require("../../assets/images/fatimah/gitlab.png")}
+            source={require("../../assets/images/gitlab.png")}
             style={styles.socialIcon}
           />
           <Text style={styles.socialText}>GitLab</Text>
@@ -148,7 +148,7 @@ export default function SignUpScreen() {
       {/* Footer */}
       <View style={styles.footer}>
         <Text style={styles.footerText}>Already have an account ? </Text>
-        <TouchableOpacity onPress={() => router.push("/fatimah-azzahra/login")}>
+        <TouchableOpacity onPress={() => router.push("/FatimahAzzahra/login")}>
           <Text style={styles.login}>Login</Text>
         </TouchableOpacity>
       </View>

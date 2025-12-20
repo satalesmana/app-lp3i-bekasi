@@ -119,14 +119,14 @@ export default function LoginScreen() {
       <View style={styles.socialRow}>
         <TouchableOpacity style={styles.socialBtn}>
           <Image
-            source={require("../../assets/images/fatimah/github.png")}
+            source={require("../../assets/images/github.png")}
             style={styles.socialIcon}
           />
           <Text style={styles.socialText}>GitHub</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.socialBtn}>
           <Image
-            source={require("../../assets/images/fatimah/gitlab.png")}
+            source={require("../../assets/images/gitlab.png")}
             style={styles.socialIcon}
           />
           <Text style={styles.socialText}>GitLab</Text>

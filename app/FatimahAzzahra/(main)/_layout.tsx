@@ -20,7 +20,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="(account)/index"
+        name="(account)"
         options={{
           title: 'Account',
           tabBarIcon: ({ color }) => <Ionicons size={28} name="person-outline" color={color} />,

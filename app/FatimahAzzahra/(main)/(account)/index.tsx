@@ -1,16 +1,41 @@
-import React, { useState } from "react";
-import { SafeAreaView, View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, Modal } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  Modal,
+} from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
+import { supabase } from "@/lib/supabase";
 
 export default function AccountScreen() {
   const [language, setLanguage] = useState("id");
   const [showLanguageModal, setShowLanguageModal] = useState(false);
 
-  const profile = {
-    name: "Fatimah Azzahra",
-    email: "fatim@gmail.com",
-  };
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+
+  // ===============================
+  // GET USER FROM SUPABASE
+  // ===============================
+  useEffect(() => {
+    const getUser = async () => {
+      const { data, error } = await supabase.auth.getUser();
+
+      if (data?.user) {
+        const userEmail = data.user.email;
+        setEmail(userEmail);
+        setName(userEmail.split("@")[0]); // ambil nama dari email
+      }
+    };
+
+    getUser();
+  }, []);
 
   const translate = {
     id: {
@@ -44,7 +69,7 @@ export default function AccountScreen() {
       english: "English",
       chooseLang: "Choose Language",
       tombol: "Cancel",
-    }
+    },
   };
 
   const t = translate[language];
@@ -70,14 +95,13 @@ export default function AccountScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-
         {/* Header */}
         <View style={styles.header}>
           <Text style={styles.headerText}>{t.account}</Text>
 
-          <Image 
-            source={require("@/assets/images/icon-user.png")} 
-            style={styles.headerUserIcon} 
+          <Image
+            source={require("@/assets/images/icon-user.png")}
+            style={styles.headerUserIcon}
           />
 
           <Image
@@ -89,17 +113,16 @@ export default function AccountScreen() {
         {/* Profile Card */}
         <View style={styles.profileCard}>
           <View style={styles.profileRow}>
-
-            {/* Avatar Circle Letter */}
+            {/* Avatar */}
             <View style={styles.avatarBox}>
               <Text style={styles.avatarText}>
-                {profile.name.charAt(0)}
+                {name ? name.charAt(0).toUpperCase() : "U"}
               </Text>
             </View>
 
             <View>
-              <Text style={styles.name}>{profile.name}</Text>
-              <Text style={styles.email}>{profile.email}</Text>
+              <Text style={styles.name}>{name}</Text>
+              <Text style={styles.email}>{email}</Text>
             </View>
           </View>
 
@@ -108,7 +131,7 @@ export default function AccountScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* Menu List */}
+        {/* Menu */}
         <MenuItem
           icon="globe-outline"
           title={t.language}
@@ -116,11 +139,12 @@ export default function AccountScreen() {
           onPress={() => setShowLanguageModal(true)}
         />
         <MenuItem
-            icon="settings-outline"
-            title={t.settings}
-            onPress={() => router.push("/FatimahAzzahra/(main)/(account)/pengaturan")}
-            />
-
+          icon="settings-outline"
+          title={t.settings}
+          onPress={() =>
+            router.push("/FatimahAzzahra/(main)/(account)/pengaturan")
+          }
+        />
         <MenuItem icon="help-circle-outline" title={t.faq} />
         <MenuItem icon="shield-checkmark-outline" title={t.privacy} />
         <MenuItem icon="document-text-outline" title={t.terms} />
@@ -130,49 +154,43 @@ export default function AccountScreen() {
         <Text style={styles.versionText}>{t.version}</Text>
       </ScrollView>
 
-      {/* Language Bottom Sheet */}
-     {/* Language Bottom Sheet */}
-<Modal visible={showLanguageModal} transparent animationType="slide">
-  <TouchableOpacity 
-    style={styles.modalOverlay} 
-    activeOpacity={1}
-    onPress={() => setShowLanguageModal(false)}  // Tap area luar = close
-  >
-    <TouchableOpacity 
-      activeOpacity={1} 
-      style={styles.bottomSheet}
-      onPress={() => {}} // Supaya tap dalam sheet tidak menutup modal
-    >
-      <View style={styles.sheetHandle} />
+      {/* Bottom Sheet */}
+      <Modal visible={showLanguageModal} transparent animationType="slide">
+        <TouchableOpacity
+          style={styles.modalOverlay}
+          activeOpacity={1}
+          onPress={() => setShowLanguageModal(false)}
+        >
+          <TouchableOpacity activeOpacity={1} style={styles.bottomSheet}>
+            <View style={styles.sheetHandle} />
+            <Text style={styles.sheetTitle}>{t.chooseLang}</Text>
 
-      <Text style={styles.sheetTitle}>{t.chooseLang}</Text>
+            <TouchableOpacity
+              style={[styles.langOption, language === "id" && styles.langActive]}
+              onPress={() => selectLanguage("id")}
+            >
+              <Text style={styles.langText}>{t.indonesia}</Text>
+              {language === "id" && <Ionicons name="checkmark" size={20} />}
+            </TouchableOpacity>
 
-      <TouchableOpacity 
-        style={[styles.langOption, language === "id" && styles.langActive]} 
-        onPress={() => selectLanguage("id")}
-      >
-        <Text style={styles.langText}>{t.indonesia}</Text>
-        {language === "id" && <Ionicons name="checkmark" size={20} />}
-      </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.langOption, language === "en" && styles.langActive]}
+              onPress={() => selectLanguage("en")}
+            >
+              <Text style={styles.langText}>{t.english}</Text>
+              {language === "en" && <Ionicons name="checkmark" size={20} />}
+            </TouchableOpacity>
 
-      <TouchableOpacity 
-        style={[styles.langOption, language === "en" && styles.langActive]} 
-        onPress={() => selectLanguage("en")}
-      >
-        <Text style={styles.langText}>{t.english}</Text>
-        {language === "en" && <Ionicons name="checkmark" size={20} />}
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => setShowLanguageModal(false)}>
-        <Text style={styles.cancelText}>{t.tombol}</Text>
-      </TouchableOpacity>
-    </TouchableOpacity>
-  </TouchableOpacity>
-</Modal>
-
+            <TouchableOpacity onPress={() => setShowLanguageModal(false)}>
+              <Text style={styles.cancelText}>{t.tombol}</Text>
+            </TouchableOpacity>
+          </TouchableOpacity>
+        </TouchableOpacity>
+      </Modal>
     </SafeAreaView>
   );
 }
+
 
 // Styles
 const styles = StyleSheet.create({
