@@ -40,8 +40,8 @@ export const ImmagePicker =(props:Props)=>{
             )
             
             if(res?.fullPath){
-                setImageUrl(`https://isibdtuopxlgxxkldvhy.supabase.co/storage/v1/object/public/${res?.fullPath}`)
-                props.onSuccesUpload(`https://isibdtuopxlgxxkldvhy.supabase.co/storage/v1/object/public/${res?.fullPath}`)
+                setImageUrl(`https://uvhibblhbmqncutkuozh.supabase.co/storage/v1/object/public/${res?.fullPath}`)
+                props.onSuccesUpload(`https://uvhibblhbmqncutkuozh.supabase.co/storage/v1/object/public/${res?.fullPath}`)
             }
             setIsLoading(false)
         }
