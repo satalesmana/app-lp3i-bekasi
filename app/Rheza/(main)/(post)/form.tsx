@@ -3,7 +3,6 @@ import { ButtonPrimary } from "@/componets/myButton";
 import { Session } from '@supabase/supabase-js';
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
-// Import Image buat preview dan ScrollView biar aman bray
 import { SafeAreaView, StyleSheet, Text, TextInput, View, Image, ScrollView, Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { supabase } from '../../../../lib/supabase';
@@ -20,7 +19,6 @@ export default function PostFormPage() {
     }, []);
 
     const onSave = async () => {
-        // Validasi simpel bray
         if (!formInput.post || formInput.post.trim() === "") {
             Alert.alert("Eits!", "Isi dulu pesannya bray.");
             return;
@@ -41,10 +39,8 @@ export default function PostFormPage() {
         console.log('🚀 Gas simpan data =>', finalData);
 
         try {
-            // 3. Kirim data yang udah rapi
             await dispatch(addNewPost(finalData as any) as any);
             
-            // 4. Reset state biar form bersih pas balik lagi
             dispatch(setPost(""));
             dispatch(setImage(null));
             
@@ -58,7 +54,7 @@ export default function PostFormPage() {
 
     const onSuccesupload = (val: string) => {
         console.log('✅ Link gambar dari Supabase =>', val);
-        dispatch(setImage(val)); // Simpan ke Redux buat preview
+        dispatch(setImage(val));
     };
 
     const getSession = () => {
@@ -139,7 +135,7 @@ const style = StyleSheet.create({
     },
     previewImage: {
         width: '100%',
-        height: 200, // Wajib ada tinggi bray biar nampil
+        height: 200, 
         borderRadius: 10,
         backgroundColor: '#f0f0f0'
     },
