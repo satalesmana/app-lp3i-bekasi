@@ -11,7 +11,7 @@ import { addNewPost, setCreatedBy, setImage, setPost } from "../../../../store/r
 export default function PostFormPage() {
     const [session, setSession] = useState<Session | null>(null)
     const dispatch = useDispatch();
-    const formInput = useSelector((state) => state.post.formInput);
+    const formInput = useSelector((state:any) => state.post.formInput);
     
     useEffect(() => {
         getSession()

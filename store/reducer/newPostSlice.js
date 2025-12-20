@@ -27,6 +27,7 @@ export const postSlice = createSlice({
     loading: false,
     error: null,
     message: null,
+    posts: [],  
     formInput:{
         post: '',
         img: '',
@@ -45,7 +46,10 @@ export const postSlice = createSlice({
     },
     setCreatedBy:(state, action) => {
       state.formInput.created_by = {...state.formInput.created_by, ...action.payload }
-    }
+    },
+     addPostToList:(state, action) => {
+    state.posts.unshift(action.payload) // tambahkan post baru ke awal list
+  }
   },
   extraReducers: (builder) => {
     builder
@@ -64,5 +68,5 @@ export const postSlice = createSlice({
   }
 })
 
-export const { setPost, setImage, setCreatedBy } = postSlice.actions
+export const { setPost, setImage, setCreatedBy, addPostToList } = postSlice.actions
 export default postSlice.reducer

@@ -27,7 +27,7 @@ export default function MainScreen() {
   
   useEffect(() => {
     getSession()
-  }, [session])
+  }, [])
 
   const getSession=()=>{
     supabase.auth.getSession().then(({ data: { session } }) => {

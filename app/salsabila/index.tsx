@@ -9,9 +9,10 @@ export default function Index() {
     }, 3000)
   }
 
-  useEffect(() => {
+    useEffect(() => {
     splashTimer()
-  })
+  }, [])
+
 
   return (
     <View style={styles.container}>
