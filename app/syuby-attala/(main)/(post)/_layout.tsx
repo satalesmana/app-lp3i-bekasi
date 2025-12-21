@@ -4,7 +4,7 @@ export default function RootLayout() {
   return(
     <Stack >
       <Stack.Screen name="index" options={{ title:'Post' }} />  
-      <Stack.Screen name="form" options={{ title: 'Add New Post'}} />
+      {/* <Stack.Screen name="form" options={{ title: 'Add New Post'}} /> */}
     </Stack>
   );
 }

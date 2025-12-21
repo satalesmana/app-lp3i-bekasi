@@ -18,8 +18,8 @@ import { fetchMesage, postMesage } from "../../../store/reducer/messageSlice";
 
 export default function MainScreen() {
   const dispatch = useDispatch();
-  const messageStore = useSelector((state) => state.message);
-  const loadingStore = useSelector((state) => state.loading);
+  const messageStore = useSelector((state) => (state as any).message);
+  const loadingStore = useSelector((state) => (state as any).loading);
 
   const [input,setInput] = useState("");
   const [session, setSession] = useState<Session | null>(null)

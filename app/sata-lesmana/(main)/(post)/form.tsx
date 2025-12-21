@@ -1,24 +1,24 @@
-import { ImmagePicker } from '@/componets/ImgPicker';
-import { ButtonPrimary } from '@/componets/myButton';
+import { ImmagePicker } from "@/componets/ImgPicker";
+import { ButtonPrimary } from "@/componets/myButton";
 import { Session } from '@supabase/supabase-js';
-import { router } from 'expo-router';
-import { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, TextInput } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { router } from "expo-router";
+import { useEffect, useState } from "react";
+import { SafeAreaView, StyleSheet, Text, TextInput } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { supabase } from '../../../../lib/supabase';
 import { addNewPost, setCreatedBy, setImage, setPost } from "../../../../store/reducer/newPostSlice";
 
 export default function PostFormPage() {
-  const [session, setSession] = useState<Session | null>(null);
-  const dispatch = useDispatch();
-  const formInput = useSelector((state) => state.post.formInput);
+    const [session, setSession] = useState<Session | null>(null)
+    const dispatch = useDispatch();
+    const formInput = useSelector((state) => state.post.formInput);
+    
+    useEffect(() => {
+        getSession()
+    }, [session])
 
-  useEffect(() => {
-    getSession();
-  }, [session]);
-
-  const onSave = async () => {
-    const name = session?.user.email?.split('@') || ['guest'];
+    const onSave=async ()=>{
+        const name = session?.user.email?.split('@') || ['guest']
 
         dispatch(setCreatedBy({
             email: session?.user.email,
@@ -62,16 +62,17 @@ export default function PostFormPage() {
 }
 
 const style = StyleSheet.create({
-  container: {
-    margin: 10,
-  },
-  textInput: {
-    padding: 10,
-    marginTop: 15,
-    borderColor: '#000',
-    borderWidth: 1,
-    height: 200,
-    textAlignVertical: 'top',
-    borderRadius: 5,
-  },
-});
+    container:{
+        margin: 10
+    },
+    textInput: {
+        padding: 10,
+        marginTop:15,
+        borderColor: '#000',
+        borderWidth: 1,
+        height: 200,
+        textAlignVertical:'top',
+        borderRadius: 5,
+
+    }
+})

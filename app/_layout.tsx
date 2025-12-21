@@ -1,14 +1,16 @@
-import { Stack } from "expo-router";
+import { Stack } from 'expo-router';
 import { Provider } from 'react-redux';
 import store from '../store/index';
 
 export default function RootLayout() {
-  return(
+  return (
     <Provider store={store}>
       <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />  
+        <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="home" />
-        <Stack.Screen name="syuby-attala" options={{headerShown: false}} />
+        <Stack.Screen name="sata-lesmana" options={{ headerShown: false }} />
+        <Stack.Screen name="syuby-attala" options={{ headerShown: false }} />
+        <Stack.Screen name="Syu" options={{ headerShown: false }} />
       </Stack>
     </Provider>
   );
